@@ -9,25 +9,30 @@ public class StageManager : MonoBehaviour
     public static StageManager instance;
 
     /// <summary>
-    /// 이 변수로 인게임에서 조절을 해주면 되지 않을까
+    /// 이 변수로 인게임에서 조절을 해주면 되지 않을까 1부터 시작함
     /// </summary>
     public int stageIdx = 1;
 
-    public Transform btnParent;
-    private Button[] stageBtns;
+    public Transform btnParent; //버튼 부모
+    private Button[] stageBtns; //인게임 이동 버튼들
 
     private void Awake()
     {
-        if(instance != null)
+        #region 싱글톤
+        if (instance != null)
         {
             Destroy(this.gameObject);
         }
         instance = this;
         DontDestroyOnLoad(this.gameObject);
+        #endregion
+
+
     }
 
     private void Start()
     {
+        #region 버튼 관련
         stageBtns = btnParent.GetComponentsInChildren<Button>();
         for (int i = 0; i < stageBtns.Length; i++)
         {
@@ -38,5 +43,8 @@ public class StageManager : MonoBehaviour
                 SceneManager.LoadScene("InGame");
             });
         }
+        #endregion
+
+
     }
 }
