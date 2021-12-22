@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnswerManager : MonoBehaviour
+public class AnswerManager : Singleton<AnswerManager>
 {
     public bool isPremium = false;
 
+    public List<string> realAnswerList = new List<string>();
 
     public bool CheckAnswer(List<string> userAnswerList, List<string> realAnswerList) 
     {

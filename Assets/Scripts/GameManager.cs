@@ -2,21 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager instance;
-
-
-    public List<string> realAnswerList = new List<string>();
-    public List<string> userAnswerList = new List<string>();
-
-
-
-    private void Awake()
-    {
-        instance = this;
-    }
-
-
+    
 
 }
