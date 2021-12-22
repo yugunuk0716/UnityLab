@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public Dictionary<int, string> userAnswerList = new Dictionary<int, string>();
+    
 
 }

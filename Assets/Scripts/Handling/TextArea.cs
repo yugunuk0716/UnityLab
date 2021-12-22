@@ -9,6 +9,6 @@ public class TextArea : MonoBehaviour
 
     public void AddMyDatasToAnswerDict()
     {
-        AnswerManager.Instance.realAnswerList.Add(index, Answer);
+        AnswerManager.Instance.realAnswerList.Add(Answer);
     }
 }

@@ -15,12 +15,6 @@ public class StageManager : Singleton<StageManager>
     public Transform btnParent; //버튼 부모
     private Button[] stageBtns; //인게임 이동 버튼들
 
-    private void Awake()
-    {
-        
-
-
-    }
 
     private void Start()
     {

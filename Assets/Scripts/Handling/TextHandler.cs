@@ -46,7 +46,7 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
             {
                 dragObj.transform.position = item.transform.position; 
                 textArea.Answer = dragObj.GetComponent<HandleableObj>().codeText.text;
-                textArea.AddMyDatsToAnswerDict();
+                
                 break;
             }
         }
