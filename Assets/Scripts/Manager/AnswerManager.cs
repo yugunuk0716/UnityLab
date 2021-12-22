@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnswerManager : MonoBehaviour
+public class AnswerManager : Singleton<AnswerManager>
 {
+    public Dictionary<int, string> realAnswerList = new Dictionary<int, string>();
 
-
-    public void CheckAnswer(List<string> userAnswerList, List<string> realAnswerList) 
+    public void CheckAnswer(List<string> userAnswerList) 
     {
         if (userAnswerList.Count == realAnswerList.Count) 
         {
@@ -16,6 +16,4 @@ public class AnswerManager : MonoBehaviour
             }
         }
     }
-
-
 }

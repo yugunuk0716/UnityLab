@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class StageManager : MonoBehaviour
+public class StageManager : Singleton<StageManager>
 {
-    public static StageManager instance;
 
     /// <summary>
     /// 이 변수로 인게임에서 조절을 해주면 되지 않을까 1부터 시작함
@@ -18,14 +17,7 @@ public class StageManager : MonoBehaviour
 
     private void Awake()
     {
-        #region 싱글톤
-        if (instance != null)
-        {
-            Destroy(this.gameObject);
-        }
-        instance = this;
-        DontDestroyOnLoad(this.gameObject);
-        #endregion
+        
 
 
     }
