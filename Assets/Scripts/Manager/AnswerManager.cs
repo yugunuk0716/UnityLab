@@ -7,7 +7,6 @@ public class AnswerManager : Singleton<AnswerManager>
     public bool isPremium = false;
 
     public List<string> realAnswerList = new List<string>();
-
     public bool CheckAnswer(List<string> userAnswerList, List<string> realAnswerList) 
     {
         bool result = false;
