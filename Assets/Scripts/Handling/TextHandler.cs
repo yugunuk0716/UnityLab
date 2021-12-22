@@ -16,6 +16,7 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
             if (eventData.selectedObject.CompareTag("DragableObj"))
             {
                 dragObj = eventData.selectedObject;
+                GameManager.Instance.UsedBtnCountMinus();
             }
         }
         catch
@@ -46,7 +47,7 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
             {
                 dragObj.transform.position = item.transform.position; 
                 textArea.Answer = dragObj.GetComponent<HandleableObj>().codeText.text;
-                
+                GameManager.Instance.UsedBtnCountPlus();
                 break;
             }
         }

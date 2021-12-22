@@ -6,14 +6,13 @@ public class AnswerManager : Singleton<AnswerManager>
 {
     public bool isPremium = false;
 
-    public List<string> realAnswerList = new List<string>();
+    public List<string> answerList = new List<string>();
 
     public bool CheckAnswer(List<string> userAnswerList, List<string> realAnswerList) 
     {
         bool result = false;
         if (isPremium) 
         {
-
             for (int i = 0; i < realAnswerList.Count; i++)
             {
                 if (userAnswerList[i] != realAnswerList[i])
@@ -26,7 +25,6 @@ public class AnswerManager : Singleton<AnswerManager>
                     result = true;
                 }
             }
-
         }
         else
         {
@@ -46,8 +44,6 @@ public class AnswerManager : Singleton<AnswerManager>
                 }
             }
         }
-
-        
 
         return result;
     }
