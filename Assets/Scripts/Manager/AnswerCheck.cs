@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AnswerManager : Singleton<AnswerManager>
+public class AnswerCheck : Singleton<AnswerCheck>
 {
     public bool isPremium = false;
 
