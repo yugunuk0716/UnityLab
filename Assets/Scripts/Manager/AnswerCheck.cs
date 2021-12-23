@@ -11,9 +11,13 @@ public class AnswerCheck : Singleton<AnswerCheck>
 
     public Text testText;
 
+    public bool isignore = false;
+
     private void Start()
     {
-        testText.text = SetTextColor("김주형 병신","FFFFFF");
+        if (isignore)
+            return;
+        //testText.text = SetTextColor("김주형 병신","FFFFFF");
 
         answerList.Add("a");
         answerList.Add("b");
@@ -26,6 +30,8 @@ public class AnswerCheck : Singleton<AnswerCheck>
 
     private void Update()
     {
+        if (isignore)
+            return;
         if (Input.GetKeyDown(KeyCode.L))
         {
 
