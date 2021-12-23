@@ -32,7 +32,7 @@ public class Touch : MonoBehaviour
             normalParticle.gameObject.SetActive(false);
             titleCanvasGroup.gameObject.SetActive(false);
         });
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         changeParticle.gameObject.SetActive(false);
     }
 }
