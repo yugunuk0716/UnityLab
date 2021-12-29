@@ -1,8 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TextArea : MonoBehaviour
+public class TextArea : MonoBehaviour, IResettable
 {
     public string Answer;
+    public int index;
+
+    public event EventHandler Death;
+
+    public void Reset()
+    {
+        
+    }
 }

@@ -26,13 +26,13 @@ public class Touch : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        titleCanvasGroup.DOFade(0,.5f).OnComplete(() =>
+        titleCanvasGroup.DOFade(0,1f).OnComplete(() =>
         {
             change.startLifetime = 0.00001f;
             normalParticle.gameObject.SetActive(false);
             titleCanvasGroup.gameObject.SetActive(false);
         });
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4.5f);
         changeParticle.gameObject.SetActive(false);
     }
 }
