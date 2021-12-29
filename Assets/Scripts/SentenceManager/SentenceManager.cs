@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class SentenceManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class SentenceManager : MonoBehaviour
     public List<GameObject> colors;
     public Button IsAnswer;
     public Button IsSpace;
+    public Button IsNewLine;
     public Button setText;
     public Button toJson;
     public Text test;
@@ -17,8 +19,11 @@ public class SentenceManager : MonoBehaviour
 
     public bool isAnswerboolen = false;
     public bool isSpaceboolen = false;
+    public bool isNewLineBoolen = false;
 
     public string colorcode = null;
+
+    public int fileindex = 0;
 
 
     /*   public void Update()
@@ -50,6 +55,15 @@ public class SentenceManager : MonoBehaviour
             isSpaceboolen = !isSpaceboolen;
             IsSpace.GetComponent<Image>().color = color;
         }
+        else if(index == 2)
+        {
+            if (!isNewLineBoolen)
+                color = Color.green;
+            else
+                color = Color.red;
+            isNewLineBoolen = !isNewLineBoolen;
+            IsNewLine.GetComponent<Image>().color = color;
+        }
     }
 
     public void SelectColor(int index)
@@ -64,13 +78,15 @@ public class SentenceManager : MonoBehaviour
 
         if (isSpaceboolen)
             str += " ";
-        else
-            str += "";
+
+        if (isNewLineBoolen)
+            str += "<newLine>";
 
         if (isAnswerboolen)
             str +="<blink>" + AnswerCheck.Instance.SetTextColor(inputString.text, colorcode) + "</blink>";
         else
-            str +=AnswerCheck.Instance.SetTextColor(inputString.text, colorcode);
+            str += AnswerCheck.Instance.SetTextColor(inputString.text, colorcode);
+
 
         resultText += str;
         test.text = resultText;
@@ -87,5 +103,12 @@ public class SentenceManager : MonoBehaviour
         Color color;    
         ColorUtility.TryParseHtmlString(colorcode,out color);
         inputString.GetComponent<Image>().color = color;
+    }
+
+    public void ToTextFileSave()
+    {
+        File.WriteAllText(Application.dataPath + $"/04.textfiles/text{fileindex}.txt", resultText);
+        Debug.Log("저장 완료, 저장된 내용:" + File.ReadAllText(Application.dataPath + $"/04.textfiles/text{fileindex}.txt"));
+        fileindex++;
     }
 }
