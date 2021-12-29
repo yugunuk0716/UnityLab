@@ -9,52 +9,13 @@ public class AnswerCheck : Singleton<AnswerCheck>
 
     public List<string> answerList = new List<string>();
 
-    public Text testText;
-
-    public bool isignore = false;
-
-    private void Start()
-    {
-        if (isignore)
-            return;
-        //testText.text = SetTextColor("김주형 병신","FFFFFF");
-
-        answerList.Add("a");
-        answerList.Add("b");
-        answerList.Add("c");
-        answerList.Add("d");
-        answerList.Add("e");
-        answerList.Add("f");
-    }
-
-
-    private void Update()
-    {
-        if (isignore)
-            return;
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-
-            if (CheckAnswer(GameManager.Instance.GetTextAreas(), answerList)) 
-            {
-                print("김주형 병신");
-            }
-            else
-            {
-                print("김주형 장애인");
-            }
-        }
-    }
-
-
-
+    //이제는 안쓰는 답 체크 함수
+    /*
     public bool CheckAnswer(List<TextArea> userAnswerList, List<string> realAnswerList) 
     {
-
         bool result = false;
 
         userAnswerList.Sort((a, b) => b.transform.position.y.CompareTo(a.transform.position.y));
-
 
         if (isPremium) 
         {
@@ -92,9 +53,9 @@ public class AnswerCheck : Singleton<AnswerCheck>
 
         return result;
     }
+    */ 
 
-
-    public void TextAreaClear(bool isPremiumm) 
+    public void TextAreaClear(bool isPremiumm) // isPremium은 그 유료로 결제한사람? 그런거라고 하네요
     {
         if (isPremium) 
         {
@@ -102,10 +63,12 @@ public class AnswerCheck : Singleton<AnswerCheck>
         }
         else
         {
-            
-            //모두 다
+            HandleableObj[] objs = FindObjectsOfType<HandleableObj>();
+            foreach(HandleableObj obj in objs)
+            {
+                obj.BackToOriginPosition();
+            }
         }
-        //텍스트 에리어에서 선택영역으로 단어를 옮기는 함수가 필요함
     }
 
 

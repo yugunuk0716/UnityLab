@@ -10,25 +10,14 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("OnBeginDrag");
-        try
+        if (eventData.selectedObject != null && eventData.selectedObject.CompareTag("DragableObj"))
         {
-            if (eventData.selectedObject.CompareTag("DragableObj"))
-            {
-                dragObj = eventData.selectedObject;
-                GameManager.Instance.UsedBtnCountMinus();
-            }
+            dragObj = eventData.selectedObject;
         }
-        catch
-        {
-            // eventData.selectedObject 애가 오류라서..ㅠ
-        }
-
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
         if (dragObj != null)
         {
             dragObj.transform.position = Input.mousePosition;
@@ -37,20 +26,33 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("OnEndDrag");
-
+        TextArea textArea;
         foreach (GameObject item in eventData.hovered)
         {
-            Debug.Log(item);
-            TextArea textArea = item.GetComponent<TextArea>();
+            textArea = item.GetComponent<TextArea>();
             if (textArea != null)
             {
-                dragObj.transform.position = item.transform.position; 
-                textArea.Answer = dragObj.GetComponent<HandleableObj>().codeText.text;
+                dragObj.transform.position = item.transform.position;
+                string dragCodeText = dragObj.GetComponent<HandleableObj>().codeText;
+
+                if (textArea.Answer == dragCodeText)
+                {
+                    textArea.bCurAnswerisCurrect = true;
+                    textArea.Answer = dragCodeText;
+                }
+
                 GameManager.Instance.UsedBtnCountPlus();
-                break;
+                Debug.Log("답안 버튼 하나 사용");
+                return;
             }
         }
-        dragObj = null;
+
+        // 드래그 끝낸 곳이 적절한 위치가 아니면 원위치
+        HandleableObj ho = dragObj.GetComponent<HandleableObj>();
+        if (ho != null)
+        {
+            ho.BackToOriginPosition();
+        }
+        
     }
 }

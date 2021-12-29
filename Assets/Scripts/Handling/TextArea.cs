@@ -8,10 +8,14 @@ public class TextArea : MonoBehaviour, IResettable
     public string Answer;
     public int index;
 
+    public bool bCurAnswerisCurrect = false;
+
     public event EventHandler Death;
 
     public void Reset()
     {
         
     }
+
+
 }
