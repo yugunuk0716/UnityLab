@@ -9,28 +9,10 @@ public class AnswerCheck : Singleton<AnswerCheck>
 
     public List<string> answerList = new List<string>();
 
-    public Text testText;
-
-    public bool isignore = false;
-
-    private void Start()
-    {
-        if (isignore)
-            return;
- 
-    }
-
-
-    private void Update()
-    {
-        if (isignore)
-            return;
-
-    }
-
+    //이제는 안쓰는 답 체크 함수
+    /*
     public bool CheckAnswer(List<TextArea> userAnswerList, List<string> realAnswerList) 
     {
-
         bool result = false;
 
         userAnswerList.Sort((a, b) => b.transform.position.y.CompareTo(a.transform.position.y));
@@ -71,9 +53,9 @@ public class AnswerCheck : Singleton<AnswerCheck>
 
         return result;
     }
+    */ 
 
-
-    public void TextAreaClear(bool isPremiumm) 
+    public void TextAreaClear(bool isPremiumm) // isPremium은 그 유료로 결제한사람? 그런거라고 하네요
     {
         if (isPremium) 
         {
@@ -87,7 +69,6 @@ public class AnswerCheck : Singleton<AnswerCheck>
                 obj.BackToOriginPosition();
             }
         }
-        //텍스트 에리어에서 선택영역으로 단어를 옮기는 함수가 필요함
     }
 
 

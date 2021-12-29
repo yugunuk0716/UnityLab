@@ -33,7 +33,7 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
             if (textArea != null)
             {
                 dragObj.transform.position = item.transform.position;
-                string dragCodeText = dragObj.GetComponent<HandleableObj>().codeText.text;
+                string dragCodeText = dragObj.GetComponent<HandleableObj>().codeText;
 
                 if (textArea.Answer == dragCodeText)
                 {
@@ -48,6 +48,11 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         }
 
         // 드래그 끝낸 곳이 적절한 위치가 아니면 원위치
-        dragObj.GetComponent<HandleableObj>().BackToOriginPosition();
+        HandleableObj ho = dragObj.GetComponent<HandleableObj>();
+        if (ho != null)
+        {
+            ho.BackToOriginPosition();
+        }
+        
     }
 }
