@@ -19,12 +19,10 @@ public class GameManager : Singleton<GameManager>
     public void UsedBtnCountPlus()
     {
         usedBtnCount++;
-        if(usedBtnCount == StageManager.Instance.GetCurStageBtnCount())
-        {
-            // 여기서 이제 리스트 다 받아 와서 체크
-
-
-        }
+        //if(usedBtnCount == StageManager.Instance.GetCurStageBtnCount())
+        //{
+        //    // 여기서 이제 리스트 다 받아 와서 체크
+        //}
     }
 
     public void UsedBtnCountMinus()

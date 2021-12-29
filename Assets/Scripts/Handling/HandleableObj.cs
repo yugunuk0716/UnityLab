@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class HandleableObj : MonoBehaviour
 {
-
     public Text codeText;    
 
     Vector3 originPos;
