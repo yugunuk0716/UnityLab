@@ -5,6 +5,4 @@ using UnityEngine;
 public class TextArea : MonoBehaviour
 {
     public string Answer;
-    public int index;
-
 }
