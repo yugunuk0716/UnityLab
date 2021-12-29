@@ -7,6 +7,7 @@ using System.IO;
 public class SentenceManager : MonoBehaviour
 {
     public InputField inputString;
+    public InputField inputTab;
     public List<GameObject> colors;
     public Button IsAnswer;
     public Button IsSpace;
@@ -81,6 +82,9 @@ public class SentenceManager : MonoBehaviour
 
         if (isNewLineBoolen)
             str += "<newLine>";
+
+        if (!inputTab.text.Equals("0"))
+            str += $"<{int.Parse(inputTab.text)}>";
 
         if (isAnswerboolen)
             str +="<blink>" + AnswerCheck.Instance.SetTextColor(inputString.text, colorcode) + "</blink>";
