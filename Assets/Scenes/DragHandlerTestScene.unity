@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usedBtnCount: 0
+  answerParent: {fileID: 927120035}
 --- !u!1 &850367858
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,6 +570,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPremium: 0
   answerList: []
+  testText: {fileID: 0}
+  isignore: 0
 --- !u!4 &1840743817
 Transform:
   m_ObjectHideFlags: 0

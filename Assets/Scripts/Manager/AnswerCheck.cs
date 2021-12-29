@@ -17,14 +17,7 @@ public class AnswerCheck : Singleton<AnswerCheck>
     {
         if (isignore)
             return;
-        //testText.text = SetTextColor("김주형 병신","FFFFFF");
-
-        answerList.Add("a");
-        answerList.Add("b");
-        answerList.Add("c");
-        answerList.Add("d");
-        answerList.Add("e");
-        answerList.Add("f");
+ 
     }
 
 
@@ -32,21 +25,8 @@ public class AnswerCheck : Singleton<AnswerCheck>
     {
         if (isignore)
             return;
-        if (Input.GetKeyDown(KeyCode.L))
-        {
 
-            if (CheckAnswer(GameManager.Instance.GetTextAreas(), answerList)) 
-            {
-                print("김주형 병신");
-            }
-            else
-            {
-                print("김주형 장애인");
-            }
-        }
     }
-
-
 
     public bool CheckAnswer(List<TextArea> userAnswerList, List<string> realAnswerList) 
     {
@@ -54,7 +34,6 @@ public class AnswerCheck : Singleton<AnswerCheck>
         bool result = false;
 
         userAnswerList.Sort((a, b) => b.transform.position.y.CompareTo(a.transform.position.y));
-
 
         if (isPremium) 
         {
@@ -102,8 +81,11 @@ public class AnswerCheck : Singleton<AnswerCheck>
         }
         else
         {
+            foreach(Button btn in StageManager.Instance.stageBtns)
+            {
+                
+            }
             
-            //모두 다
         }
         //텍스트 에리어에서 선택영역으로 단어를 옮기는 함수가 필요함
     }

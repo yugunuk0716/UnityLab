@@ -10,25 +10,15 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("OnBeginDrag");
-        try
+        if (eventData.selectedObject != null && eventData.selectedObject.CompareTag("DragableObj"))
         {
-            if (eventData.selectedObject.CompareTag("DragableObj"))
-            {
-                dragObj = eventData.selectedObject;
-                GameManager.Instance.UsedBtnCountMinus();
-            }
+            dragObj = eventData.selectedObject;
+            GameManager.Instance.UsedBtnCountMinus();
         }
-        catch
-        {
-            // eventData.selectedObject 애가 오류라서..ㅠ
-        }
-
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
         if (dragObj != null)
         {
             dragObj.transform.position = Input.mousePosition;
@@ -37,20 +27,16 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("OnEndDrag");
-
         foreach (GameObject item in eventData.hovered)
         {
-            Debug.Log(item);
             TextArea textArea = item.GetComponent<TextArea>();
             if (textArea != null)
             {
-                dragObj.transform.position = item.transform.position; 
+                dragObj.transform.position = item.transform.position;
                 textArea.Answer = dragObj.GetComponent<HandleableObj>().codeText.text;
                 GameManager.Instance.UsedBtnCountPlus();
                 break;
             }
         }
-        dragObj = null;
     }
 }
