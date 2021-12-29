@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -24,14 +25,20 @@ public class CreateAnswer : MonoBehaviour
            str = str.Replace("<newLine>", "^");
 		}
 
+
+        //string[] strs = str.Split(new string[] { "^","<blink>","</blink>" }, StringSplitOptions.None);
         string[] strs = str.Split('^');
         int idx = 0;
-		foreach (var item in strs)
-		{
+        foreach (var item in strs)
+        {
             idx++;
             print(item);
             AnswerManager.Instance.OutPutText(item,idx);
-		}
+        }
+
+
+
         return str;
     }
 }
+//gayjoygo
