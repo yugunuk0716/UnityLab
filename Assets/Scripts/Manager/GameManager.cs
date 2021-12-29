@@ -5,29 +5,37 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     public int usedBtnCount; // 사용중인 단어나 문장 버튼
-
+    private int textAreaCount;
 
     public GameObject answerParent;
     private TextArea[] textAreas;
 
     private void Start()
     {
-        usedBtnCount = 0;
         textAreas = answerParent.GetComponentsInChildren<TextArea>();
+        usedBtnCount = 0;
+        textAreaCount = textAreas.Length;
     }
 
     public void UsedBtnCountPlus()
     {
         usedBtnCount++;
-        //if(usedBtnCount == StageManager.Instance.GetCurStageBtnCount())
-        //{
-        //    // 여기서 이제 리스트 다 받아 와서 체크
-        //}
-    }
+        if(usedBtnCount == textAreaCount)
+        {
+            usedBtnCount = 0;
+            foreach(TextArea item in GetTextAreas())
+            {
+                if (!item.bCurAnswerisCurrect)
+                {
+                    AnswerCheck.Instance.TextAreaClear(false);
+                    return;
+                }
+            }
 
-    public void UsedBtnCountMinus()
-    {
-        usedBtnCount--;
+            // 정답임
+            // 다음 스테이지 락 풀어주기
+            Debug.Log("정답입니다");
+        }
     }
 
     public List<TextArea> GetTextAreas() 
