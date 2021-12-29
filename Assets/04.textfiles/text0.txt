@@ -1,0 +1,1 @@
+<newLine><color=#569CD6>public</color> <color=#569CD6>string</color> <color=#DCDCDC>newstring</color> <color=#DCDCDC>=</color> <color=#D39D85>"hello"</color><color=#DCDCDC>;</color><newLine><color=#569CD6>private</color> <blink><color=#569CD6>int</color></blink> <color=#DCDCDC>a</color> <color=#DCDCDC>=</color> <color=#B5CEA8>123</color><color=#DCDCDC>;</color>
