@@ -13,7 +13,6 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         if (eventData.selectedObject != null && eventData.selectedObject.CompareTag("DragableObj"))
         {
             dragObj = eventData.selectedObject;
-            GameManager.Instance.UsedBtnCountMinus();
         }
     }
 
@@ -27,16 +26,28 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        TextArea textArea;
         foreach (GameObject item in eventData.hovered)
         {
-            TextArea textArea = item.GetComponent<TextArea>();
+            textArea = item.GetComponent<TextArea>();
             if (textArea != null)
             {
                 dragObj.transform.position = item.transform.position;
-                textArea.Answer = dragObj.GetComponent<HandleableObj>().codeText.text;
+                string dragCodeText = dragObj.GetComponent<HandleableObj>().codeText.text;
+
+                if (textArea.Answer == dragCodeText)
+                {
+                    textArea.bCurAnswerisCurrect = true;
+                    textArea.Answer = dragCodeText;
+                }
+
                 GameManager.Instance.UsedBtnCountPlus();
-                break;
+                Debug.Log("답안 버튼 하나 사용");
+                return;
             }
         }
+
+        // 드래그 끝낸 곳이 적절한 위치가 아니면 원위치
+        dragObj.GetComponent<HandleableObj>().BackToOriginPosition();
     }
 }

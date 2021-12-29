@@ -12,6 +12,7 @@ public class AnswerManager : MonoBehaviour
 	{
 
 	}
+
 	public GameObject OutPutText(string _str,string _answer)
 	{
 		GameObject text = Instantiate(textPrefab,content);
@@ -20,11 +21,11 @@ public class AnswerManager : MonoBehaviour
 		Text lineIndex = text.transform.Find("LineIndex").GetComponent<Text>();
 		strText.text = _str;
 
-		if (data != null)
-		{
-			data.Answer = _answer;
-			lineIndex.text = data.index.ToString();
-		}
+		//if (data != null)
+		//{
+		//	data.Answer = _answer;
+		//	lineIndex.text = data.index.ToString();
+		//}
 		return text;
 	}
 }

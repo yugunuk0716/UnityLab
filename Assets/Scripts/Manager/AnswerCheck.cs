@@ -81,11 +81,11 @@ public class AnswerCheck : Singleton<AnswerCheck>
         }
         else
         {
-            foreach(Button btn in StageManager.Instance.stageBtns)
+            HandleableObj[] objs = FindObjectsOfType<HandleableObj>();
+            foreach(HandleableObj obj in objs)
             {
-                
+                obj.BackToOriginPosition();
             }
-            
         }
         //텍스트 에리어에서 선택영역으로 단어를 옮기는 함수가 필요함
     }
