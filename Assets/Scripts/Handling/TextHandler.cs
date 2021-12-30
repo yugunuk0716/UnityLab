@@ -52,7 +52,6 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         if (ho != null)
         {
             ho.BackToOriginPosition();
-        }
-        
+        }        
     }
 }
