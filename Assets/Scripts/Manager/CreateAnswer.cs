@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class CreateAnswer : MonoBehaviour
@@ -24,15 +25,15 @@ public class CreateAnswer : MonoBehaviour
 		{
            str = str.Replace("<newLine>", "^");
 		}
-
-
+        //\W<>=#*
+        
         //string[] strs = str.Split(new string[] { "^","<blink>","</blink>" }, StringSplitOptions.None);
         string[] strs = str.Split('^');
         int idx = 0;
         foreach (var item in strs)
         {
             idx++;
-            print(item);
+            //print(item);
             AnswerManager.Instance.OutPutText(item,idx);
         }
 
