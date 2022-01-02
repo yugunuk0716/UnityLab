@@ -10,12 +10,17 @@ public class AnswerManager : Singleton<AnswerManager>
 {
     [SerializeField] private Transform content;
     [SerializeField] private GameObject textPrefab;
+    [SerializeField] private GameObject fakeTxt;
 
     public GameObject answerArea;
     public Transform parentTrm;
 
+	private void Start()
+	{
 
-    public GameObject OutPutText(string _str, int lineIdx)
+    }
+
+	public GameObject OutPutText(string _str, int lineIdx)
     {
         GameObject text = Instantiate(textPrefab, content);
         //TextArea data = text.GetComponent<TextArea>();
@@ -43,19 +48,28 @@ public class AnswerManager : Singleton<AnswerManager>
     {
         int idx = 0;
         StrText.text = "";
+        TextMeshProUGUI fake = Instantiate(fakeTxt, StrText.transform.parent).GetComponent<TextMeshProUGUI>();
+        
+        fake.text = "";
         for (int i = 0; i < strs.Length; i++)
         {
             if (i % 2 != 0)
             {
-                MakeAnswerArea(StrText, idx, text.transform);
-                strs[i] = "                                "; // 공백32개
-                Debug.Log("텍스트 : " + StrText.text);
-                Debug.Log("문자열 길이 : " + StrText.text.Length);
-                Debug.Log("인덱스 : " + idx);
-                Debug.Log("인덱스 해당 텍스트 : " + StrText.text[idx]);
-                Debug.Log("인덱스-1 해당 텍스트 : " + StrText.text[idx - 1]);
-                Debug.Log("인덱스+1 해당 텍스트 : " + StrText.text[idx + 1]);
-            }
+                MakeAnswerArea(fake, idx, text.transform);
+				strs[i] = "                                "; // 공백32개
+				Debug.Log("텍스트 : " + fake.text);
+				Debug.Log("문자열 길이 : " + fake.text.Length);
+				Debug.Log("인덱스 : " + idx);
+				Debug.Log("인덱스 해당 텍스트 : " + fake.text[idx]);
+				Debug.Log("인덱스-1 해당 텍스트 : " + fake.text[idx - 1]);
+				Debug.Log("인덱스+1 해당 텍스트 : " + fake.text[idx + 1]);
+			}
+
+            string test = strs[i].Replace(' ', 'a');
+            fake.text += test;
+            yield return null;
+            fake.text = fake.GetParsedText();
+
             StrText.text += strs[i];
             yield return null;
             idx = StrText.GetParsedText().Length;
