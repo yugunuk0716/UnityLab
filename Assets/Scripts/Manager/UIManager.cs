@@ -34,8 +34,7 @@ public class UIManager : Singleton<UIManager>
         menuBtn.onClick.AddListener(() => 
         {
             OpenPanel("inGameMenu");
-            print("?");
-        });
+        }); 
     }
 
     void Update()
