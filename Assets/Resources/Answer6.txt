@@ -1,0 +1,1 @@
+Format,OnTriggerEnter,life,OnTriggerEnter2D,CompareTag,UpdateLife,Fire,OnCollisionEnter,Revive,LoadScene,OnCollisionEnter2D,gameManager.life
