@@ -8,7 +8,6 @@ using System.Text.RegularExpressions;
 
 public class AnswerManager : Singleton<AnswerManager>
 {
-    [SerializeField] private Transform content;
     [SerializeField] private GameObject textPrefab;
     [SerializeField] private VerticalLayoutGroup verticalGroup;
 
@@ -17,11 +16,11 @@ public class AnswerManager : Singleton<AnswerManager>
 
     void Start()
     {
-        OutPutText("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<blink>aa</blink>aaaa", 55);
+        //OutPutText("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<blink>aa</blink>aaaa", 55);
     }
-	public GameObject OutPutText(string _str, int lineIdx)
+	public GameObject OutPutText(string _str, int lineIdx,GameObject content)
     {
-        GameObject text = Instantiate(textPrefab, content);
+        GameObject text = Instantiate(textPrefab, content.transform);
         //TextArea data = text.GetComponent<TextArea>();
         TextMeshProUGUI strText = text.transform.Find("text").GetComponent<TextMeshProUGUI>();
         Text lineIndex = text.transform.Find("LineIndex").GetComponent<Text>();
@@ -35,29 +34,29 @@ public class AnswerManager : Singleton<AnswerManager>
 
             if(lineIdx!=0)
             lineIndex.text = lineIdx.ToString();
-            StartCoroutine(wait(strText));
+            StartCoroutine(wait(strText, content));
             return text;
         }
 
         strText.text = _str;
         if (lineIdx != 0)
             lineIndex.text = lineIdx.ToString();
-        StartCoroutine(wait(strText));
+        StartCoroutine(wait(strText, content));
         return text;
     }
 
-    public void verticalScaleUp(TextMeshProUGUI strText)
+    public void verticalScaleUp(TextMeshProUGUI strText, GameObject content)
     {
-        if (verticalGroup.padding.right < strText.bounds.size.x)
+        if (content.GetComponent<VerticalLayoutGroup>().padding.right < strText.bounds.size.x)
         {
             print(strText.rectTransform.rect.width);
-            verticalGroup.padding.right = (int)strText.rectTransform.rect.width + 50;
+            content.GetComponent<VerticalLayoutGroup>().padding.right = (int)strText.rectTransform.rect.width + 50;
         }
     }
-    public IEnumerator wait(TextMeshProUGUI strText)
+    public IEnumerator wait(TextMeshProUGUI strText, GameObject content)
     {
         yield return null;
-        verticalScaleUp(strText);
+        verticalScaleUp(strText, content);
     }
 
     public IEnumerator ParseText(TextMeshProUGUI StrText, string[] strs, GameObject text)
