@@ -19,7 +19,7 @@ public class StageManager : Singleton<StageManager>
     {
         stageInScriptsCount = new int[]
         {
-            -1,2,3,2,1,2,2,1
+            1,2,3,2,1,2,2,1
         };
         #region 버튼 관련
         stageBtns = btnParent.GetComponentsInChildren<Button>();
