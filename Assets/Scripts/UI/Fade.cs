@@ -14,7 +14,7 @@ public class Fade : MonoBehaviour
 
 	private void Start()
 	{
-		stageIndexText.text = $"{StageManager.Instance.stageIdx}";
+		stageIndexText.text = $"{StageManager.instance.stageIdx}";
 		stageTitleText.text = "백그라운드 이동 만들기 시..시발련아";
 		StartCoroutine(FadeOut());
 	}
