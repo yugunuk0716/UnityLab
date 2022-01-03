@@ -9,9 +9,9 @@ using System.Text.RegularExpressions;
 public class AnswerManager : Singleton<AnswerManager>
 {
     [SerializeField] private GameObject textPrefab;
-
-
-    public GameObject answerArea;
+    //[SerializeField] private GameObject buttonPrefab;
+    //[SerializeField] private Transform buttonParent;
+    [SerializeField] private GameObject answerArea;
     public Transform parentTrm;
 
     float answerAreaWidth;
