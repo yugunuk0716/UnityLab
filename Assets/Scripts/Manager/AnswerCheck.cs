@@ -70,14 +70,4 @@ public class AnswerCheck : Singleton<AnswerCheck>
             }
         }
     }
-
-
-    public string SetTextColor(string str, string colorCode) 
-    {
-        str = $"<color={colorCode}>{str}</color>";
-
-        return str;
-    }
-
-
 }

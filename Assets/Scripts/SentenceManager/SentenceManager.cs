@@ -87,9 +87,9 @@ public class SentenceManager : MonoBehaviour
             str += $"<{int.Parse(inputTab.text)}>";
 
         if (isAnswerboolen)
-            str +="<blink>" + AnswerCheck.Instance.SetTextColor(inputString.text, colorcode) + "</blink>";
+            str +="<blink>" + SetTextColor(inputString.text, colorcode) + "</blink>";
         else
-            str += AnswerCheck.Instance.SetTextColor(inputString.text, colorcode);
+            str += SetTextColor(inputString.text, colorcode);
 
 
         resultText += str;
@@ -114,5 +114,11 @@ public class SentenceManager : MonoBehaviour
         File.WriteAllText(Application.dataPath + $"/04.textfiles/text{fileindex}.txt", resultText);
         Debug.Log("저장 완료, 저장된 내용:" + File.ReadAllText(Application.dataPath + $"/04.textfiles/text{fileindex}.txt"));
         fileindex++;
+    }
+
+    public string SetTextColor(string str, string colorCode)
+    {
+        str = $"<color={colorCode}>{str}</color>";
+        return str;
     }
 }
