@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 public class AnswerManager : Singleton<AnswerManager>
 {
     [SerializeField] private GameObject textPrefab;
-    [SerializeField] private VerticalLayoutGroup verticalGroup;
+
 
     public GameObject answerArea;
     public Transform parentTrm;
@@ -21,7 +21,18 @@ public class AnswerManager : Singleton<AnswerManager>
         answerAreaWidth = answerArea.GetComponent<RectTransform>().rect.width;
     }
 
-	public GameObject OutPutText(string _str, int lineIdx,GameObject content)
+    public void AnswerLoad(string path)
+    {
+        string[] strs = path.Split(',');
+
+        foreach (string answer in strs)
+        {
+            //HandleableObj obj = Instantiate(buttonPrefab, buttonParent).GetComponent<HandleableObj>();
+            //obj.codeText = answer;
+        }
+    }
+
+    public GameObject OutPutText(string _str, int lineIdx,GameObject content)
     {
         GameObject text = Instantiate(textPrefab, content.transform);
         TextMeshProUGUI strText = text.transform.Find("text").GetComponent<TextMeshProUGUI>();
@@ -79,7 +90,6 @@ public class AnswerManager : Singleton<AnswerManager>
     public void testMake(TextMeshProUGUI tmp_text)
     {
         GameObject area = Instantiate(answerArea, tmp_text.transform.parent);
-        print(tmp_text.bounds.size.x);
         area.GetComponent<RectTransform>().anchoredPosition = new Vector3(100+tmp_text.bounds.size.x,0);
     }
 
