@@ -46,6 +46,7 @@ public class AnswerManager : Singleton<AnswerManager>
 
     public IEnumerator ParseText(TextMeshProUGUI StrText, string[] strs, GameObject text)
     {
+        yield return null;
         int idx = 0;
         StrText.text = "";
         TextMeshProUGUI fake = Instantiate(fakeTxt, StrText.transform.parent).GetComponent<TextMeshProUGUI>();
@@ -55,42 +56,45 @@ public class AnswerManager : Singleton<AnswerManager>
         {
             if (i % 2 != 0)
             {
-                MakeAnswerArea(fake, idx, text.transform);
+                yield return null;
+                fake.text = fake.GetParsedText();
+                StartCoroutine(MakeAnswerArea(fake, idx, text.transform));
 				strs[i] = "                                "; // 공백32개
 				Debug.Log("텍스트 : " + fake.text);
 				Debug.Log("문자열 길이 : " + fake.text.Length);
 				Debug.Log("인덱스 : " + idx);
-				Debug.Log("인덱스 해당 텍스트 : " + fake.text[idx]);
-				Debug.Log("인덱스-1 해당 텍스트 : " + fake.text[idx - 1]);
-				Debug.Log("인덱스+1 해당 텍스트 : " + fake.text[idx + 1]);
 			}
 
             string test = strs[i].Replace(' ', 'a');
-            fake.text += test;
+            fake.text += test; // 공백은 a로 바꿔서
+            StrText.text += strs[i]; // 공백채워주기
             yield return null;
-            fake.text = fake.GetParsedText();
-
-            StrText.text += strs[i];
-            yield return null;
-            idx = StrText.GetParsedText().Length;
+            idx = fake.GetParsedText().Length;
         }
     }
 
 
-
-    public void MakeAnswerArea(TextMeshProUGUI tmp_text, int index, Transform parent)
+    IEnumerator MakeAnswerArea(TextMeshProUGUI tmp_text, int index, Transform parent)
     {
-        Debug.Log(index);
+        yield return null;
         tmp_text.ForceMeshUpdate();
-        Vector3[] vertices = tmp_text.mesh.vertices;
-        TMP_CharacterInfo charInfo = tmp_text.textInfo.characterInfo[index - 1];
-        Debug.Log(tmp_text.textInfo.characterInfo[index - 1].character.ToString());
-        int vertexIndex = charInfo.vertexIndex;
-        Debug.Log(vertices.Length);
+        tmp_text.UpdateVertexData();    
+        yield return null;
 
-        Vector2 charMidTopLine = new Vector2((vertices[index - 1].x) / 2, (charInfo.bottomLeft.y + charInfo.topLeft.y) / 2);
+        Vector3[] vertices = tmp_text.mesh.vertices;
+        TMP_CharacterInfo charInfo = tmp_text.textInfo.characterInfo[tmp_text.textInfo.characterCount - 1];
+        int vertexIndex = charInfo.vertexIndex;
+
+        foreach(var item in vertices)
+        {
+            Debug.Log(item);
+        }
+
+        Debug.Log(vertices.Length);
+        Debug.Log(vertexIndex);
+
+        Vector2 charMidTopLine = new Vector2( vertices[vertexIndex ].x, (charInfo.bottomLeft.y + charInfo.topLeft.y) / 2);
         Vector3 worldPos = tmp_text.transform.TransformPoint(charMidTopLine);
-        GameObject charPositionGameObj = Instantiate(answerArea, parent);
-        charPositionGameObj.transform.position = worldPos;
+        Instantiate(answerArea, worldPos, Quaternion.identity, parent);
     }
 }
