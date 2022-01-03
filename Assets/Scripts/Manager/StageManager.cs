@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class StageManager : Singleton<StageManager>
 {
     public int stageIdx = 1;
-    public Dictionary<int, int> stageInIdx;
     public int[] stageInScriptsCount;
     private int buttonCount;
 
@@ -19,11 +18,10 @@ public class StageManager : Singleton<StageManager>
     {
         stageInScriptsCount = new int[]
         {
-            1,2,3,2,1,2,2,1
+            -1,1,2,3,2,1,2,2,1
         };
         #region 버튼 관련
         stageBtns = btnParent.GetComponentsInChildren<Button>();
-        stageInIdx = new Dictionary<int, int>();
         buttonCount = stageBtns.Length;
 
         for (int i = 0; i < buttonCount; i++)
@@ -32,7 +30,6 @@ public class StageManager : Singleton<StageManager>
             stageBtns[idx].onClick.AddListener(() =>
             {
                 stageIdx = idx + 1;
-                stageInIdx.Add(idx, stageInScriptsCount[idx - 1]);
                 SceneManager.LoadScene("InGame");
             });
         }   
