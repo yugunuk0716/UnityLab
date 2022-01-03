@@ -1334,7 +1334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: {fileID: 1955975264}
   textPrefab: {fileID: 2444275132571839084, guid: ee8c2cc6abfd2cd458cd652086806700, type: 3}
-  fakeTxt: {fileID: 7119553528833733615, guid: 6c8705a8ba078eb40813eda67c492b62, type: 3}
+  verticalGroup: {fileID: 1955975265}
   answerArea: {fileID: 5663200095412874649, guid: be0d7dc85a139ee4296a45af0b8ea739, type: 3}
   parentTrm: {fileID: 218631740}
 --- !u!4 &969255557
