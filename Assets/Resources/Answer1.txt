@@ -1,0 +1,1 @@
+FindObjectOfType,GetComponent,Time.deltaTime,GetComponents,SetTextureOffset,Time.time,GetTextureOffset,offset.x

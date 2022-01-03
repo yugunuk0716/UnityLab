@@ -1,0 +1,1 @@
+StartCoroutine,WaitUntil,bulletPrfab,Time.deltaTime,firePosition.position,Quaternion.identity,WaitForSeconds,StartKoroutine

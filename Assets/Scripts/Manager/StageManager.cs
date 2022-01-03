@@ -4,15 +4,31 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class StageManager : Singleton<StageManager>
+public class StageManager : MonoBehaviour
 {
+    public static StageManager instance;
+
     public int stageIdx = 1;
     public int[] stageInScriptsCount;
     private int buttonCount;
 
+    public string stageName = "";
+
     public Transform btnParent; //버튼 부모
     public Button[] stageBtns { get; private set; } //인게임 이동 버튼
 
+    private void Awake()
+    {
+        if(instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -30,10 +46,10 @@ public class StageManager : Singleton<StageManager>
             stageBtns[idx].onClick.AddListener(() =>
             {
                 stageIdx = idx + 1;
+                stageName = stageBtns[idx].GetComponentInChildren<Text>().text;
                 SceneManager.LoadScene("InGame");
             });
         }   
         #endregion
     }
-
 }
