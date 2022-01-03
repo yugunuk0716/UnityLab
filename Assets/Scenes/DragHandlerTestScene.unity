@@ -424,7 +424,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -409, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &775740834
@@ -447,7 +447,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <blink><color=#DCDCDC>asd</color></blink>aaaccc
+  m_text: T                                  O
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -481,7 +481,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1015,7 +1015,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tmp_text: {fileID: 775740834}
   testobj: {fileID: 5663200095412874649, guid: be0d7dc85a139ee4296a45af0b8ea739, type: 3}
-  p: {fileID: 850367862}
+  answerArea: {fileID: 5663200095412874649, guid: be0d7dc85a139ee4296a45af0b8ea739, type: 3}
+  parent: {fileID: 850367862}
+  a: <blink><color=#DCDCDC>asd</color></blink>aaaccc
+  o: 0
 --- !u!1 &1840743815
 GameObject:
   m_ObjectHideFlags: 0

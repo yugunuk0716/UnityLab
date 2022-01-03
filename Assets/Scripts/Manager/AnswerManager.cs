@@ -8,53 +8,113 @@ using System.Text.RegularExpressions;
 
 public class AnswerManager : Singleton<AnswerManager>
 {
-	[SerializeField] private Transform content;
-	[SerializeField] private GameObject textPrefab;
+    [SerializeField] private Transform content;
+    [SerializeField] private GameObject textPrefab;
+    [SerializeField] private VerticalLayoutGroup verticalGroup;
 
+    public GameObject answerArea;
+    public Transform parentTrm;
 
-	public GameObject OutPutText(string _str,int lineIdx)
-	{
-		GameObject text = Instantiate(textPrefab,content);
-		//TextArea data = text.GetComponent<TextArea>();
-		TextMeshProUGUI strText = text.transform.Find("text").GetComponent<TextMeshProUGUI>();
-		Text lineIndex = text.transform.Find("LineIndex").GetComponent<Text>();
+    void Start()
+    {
+        OutPutText("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<blink>aa</blink>aaaa", 55);
+    }
+	public GameObject OutPutText(string _str, int lineIdx)
+    {
+        GameObject text = Instantiate(textPrefab, content);
+        //TextArea data = text.GetComponent<TextArea>();
+        TextMeshProUGUI strText = text.transform.Find("text").GetComponent<TextMeshProUGUI>();
+        Text lineIndex = text.transform.Find("LineIndex").GetComponent<Text>();
+        lineIndex.text = "";
+        //strText.ForceMeshUpdate();
 
-		if (_str.IndexOf("<blink>")!=-1)
-		{
-			string[] strs = _str.Split(new string[] { "<blink>", "</blink>" }, StringSplitOptions.None);
-			int idx = 0;
-			for (int i = 0; i < strs.Length; i++)
-			{
-				
-				if (i % 2 != 0)
-				{
-					//박스 생성 만들면됨(strs[i]);
-					//strs[i] = "                                ";
-					strs[i] = " ";
-				}
+        if (_str.IndexOf("<blink>") != -1)
+        {
+            string[] strs = _str.Split(new string[] { "<blink>", "</blink>" }, StringSplitOptions.None);
+            StartCoroutine(ParseText(strText, strs, text));
 
-				StartCoroutine(ParseText(strText, strs, i));
+            if(lineIdx!=0)
+            lineIndex.text = lineIdx.ToString();
+            StartCoroutine(wait(strText));
+            return text;
+        }
+
+        strText.text = _str;
+        if (lineIdx != 0)
+            lineIndex.text = lineIdx.ToString();
+        StartCoroutine(wait(strText));
+        return text;
+    }
+
+    public void verticalScaleUp(TextMeshProUGUI strText)
+    {
+        if (verticalGroup.padding.right < strText.bounds.size.x)
+        {
+            print(strText.rectTransform.rect.width);
+            verticalGroup.padding.right = (int)strText.rectTransform.rect.width + 50;
+        }
+    }
+    public IEnumerator wait(TextMeshProUGUI strText)
+    {
+        yield return null;
+        verticalScaleUp(strText);
+    }
+
+    public IEnumerator ParseText(TextMeshProUGUI StrText, string[] strs, GameObject text)
+    {
+        int idx = 0;
+        StrText.text = "";
+       // TextMeshProUGUI fake = Instantiate(fakeTxt, StrText.transform.parent).GetComponent<TextMeshProUGUI>();
+        
+        //fake.text = "";
+        for (int i = 0; i < strs.Length; i++)
+        {
+            if (i % 2 != 0)
+            {
+                //MakeAnswerArea(fake, idx, text.transform);
+                testMake(StrText);
+                strs[i] = "                 "; // 공백17개
+                //print("A"+idx);
+                //print("B"+fake.text.Length);
+				//Debug.Log("텍스트 : " + fake.text);
+				//Debug.Log("문자열 길이 : " + fake.text.Length);
+				//Debug.Log("인덱스 : " + idx);
+				//Debug.Log("인덱스 해당 텍스트 : " + fake.text[idx]);
+				//Debug.Log("인덱스-1 해당 텍스트 : " + fake.text[idx - 1]);
+				//Debug.Log("인덱스+1 해당 텍스트 : " + fake.text[idx + 1]);
 			}
-			lineIndex.text = lineIdx.ToString();
-			return text;
-		}
 
-		strText.text = _str;
-		lineIndex.text = lineIdx.ToString();
+            //string test = strs[i].Replace(' ', 'a');
+            //fake.text += test;
+            //yield return null;
+            //fake.text = fake.GetParsedText();
+            StrText.text += strs[i];
 
-		return text;
-	}
-
-
-	public IEnumerator ParseText(TextMeshProUGUI StrText, string[] strs, int i)
-	{
-		int idx = 0;
-		yield return null;
-		StrText.text += strs[i];
-		idx = StrText.GetParsedText().Length;
-		string a = StrText.GetParsedText();
+            yield return null;
+            idx = StrText.GetParsedText().Length;
+        }
+    }
 
 
-		Debug.Log(StrText.GetParsedText().Length);
-	}
+    public void testMake(TextMeshProUGUI tmp_text)
+    {
+        GameObject area = Instantiate(answerArea, tmp_text.transform.parent);
+        print(tmp_text.bounds.size.x);
+        area.GetComponent<RectTransform>().anchoredPosition = new Vector3(100+tmp_text.bounds.size.x,0);
+    }
+    //public void MakeAnswerArea(TextMeshProUGUI tmp_text, int index, Transform parent)
+    //{
+    //    Debug.Log("index : " + index);
+    //    tmp_text.ForceMeshUpdate();
+    //    Vector3[] vertices = tmp_text.mesh.vertices;
+    //    TMP_CharacterInfo charInfo = tmp_text.textInfo.characterInfo[index - 1];
+    //    int vertexIndex = charInfo.vertexIndex;
+    //    Debug.Log("vertices : " + vertices.Length);
+    //    Debug.Log("vertexIndex : " + vertexIndex);
+
+    //    Vector2 charMidTopLine = new Vector2((vertices[vertexIndex / 2 - 1].x + vertices[vertexIndex / 2 - 2].x) / 2, (charInfo.bottomLeft.y + charInfo.topLeft.y) / 2);
+    //    Vector3 worldPos = tmp_text.transform.TransformPoint(charMidTopLine);
+    //    GameObject charPositionGameObj = Instantiate(answerArea, parent);
+    //    charPositionGameObj.transform.position = worldPos;
+    //}
 }

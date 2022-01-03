@@ -25,8 +25,20 @@ public class CreateAnswer : MonoBehaviour
 		{
            str = str.Replace("<newLine>", "^");
 		}
+        if (str.Contains("<t1>"))
+        {
+            str = str.Replace("<t1>", "  ");
+        }
+        if (str.Contains("<t2>"))
+        {
+            str = str.Replace("<t2>", "    ");
+        }
+        if (str.Contains("<t3>"))
+        {
+            str = str.Replace("<t3>", "      ");
+        }
         //\W<>=#*
-        
+
         //string[] strs = str.Split(new string[] { "^","<blink>","</blink>" }, StringSplitOptions.None);
         string[] strs = str.Split('^');
         int idx = 0;

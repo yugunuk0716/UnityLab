@@ -1,0 +1,1 @@
+MoveTowards,speed,Update,isDead,Translate,Awake,Destroy,DontDestroyOnLoad

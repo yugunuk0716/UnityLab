@@ -42,14 +42,10 @@ public class GameManager : Singleton<GameManager>
     public List<TextArea> GetTextAreas() 
     {
         List<TextArea> answer = new List<TextArea>();
-
         for (int i = 0; i < textAreas.Length; i++)
         {
             answer.Add(textAreas[i]);
         }
-
         return answer;
     }
-
-
 }
