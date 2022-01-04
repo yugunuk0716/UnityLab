@@ -17,6 +17,8 @@ public class StageManager : MonoBehaviour
     public Transform btnParent; //버튼 부모
     public Button[] stageBtns { get; private set; } //인게임 이동 버튼
 
+    private StageLock stageLock;
+
     private void Awake()
     {
         if(instance != null)
@@ -29,6 +31,7 @@ public class StageManager : MonoBehaviour
 
     private void Start()
     {
+        stageLock = GetComponent<StageLock>();
         stageInScriptsCount = new int[]
         {
             -1,1,2,3,2,1,2,2,1
@@ -40,6 +43,11 @@ public class StageManager : MonoBehaviour
         for (int i = 0; i < buttonCount; i++)
         {
             int idx = i;
+
+            if ( idx != 0 && stageLock.LoadData(idx) == 0) 
+            {
+                stageBtns[idx].interactable = false;
+            }
             stageBtns[idx].onClick.AddListener(() =>
             {
                 stageIdx = idx + 1;
@@ -48,5 +56,10 @@ public class StageManager : MonoBehaviour
             });
         }
         #endregion
+    }
+
+    public void SaveData() 
+    {
+        stageLock.SaveData(stageIdx);
     }
 }
