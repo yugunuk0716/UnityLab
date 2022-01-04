@@ -16,13 +16,10 @@ public class AnswerManager : Singleton<AnswerManager>
 
     public void AnswerLoad(string path)
     {
-        string[] strs = path.Split(',');
-
-        foreach (string answer in strs)
-        {
-            HandleableObj obj = Instantiate(buttonPrefab, buttonsParent).GetComponent<HandleableObj>();
-            obj.codeText = answer;
-        }
+        Debug.Log("»ý¼º!");
+        HandleableObj obj = Instantiate(buttonPrefab, buttonsParent).GetComponent<HandleableObj>();
+        obj.codeText = path;
+        obj.GetComponentInChildren<TextMeshProUGUI>().text = path;
     }
 
     public GameObject OutPutText(string _str, int lineIdx,GameObject content)

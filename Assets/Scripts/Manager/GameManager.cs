@@ -38,8 +38,8 @@ public class GameManager : Singleton<GameManager>
                 }
             }
 
-            // 정답임
-            // 다음 스테이지 락 풀어주기
+            UIManager.Instance.OpenPanel("clear");
+            StageManager.instance.SaveData();
             Debug.Log("정답입니다");
         }
     }
