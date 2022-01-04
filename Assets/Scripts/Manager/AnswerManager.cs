@@ -14,13 +14,17 @@ public class AnswerManager : Singleton<AnswerManager>
 
     int nowMaxTextLength = 0;
 
-    public void AnswerLoad(string path)
+    IEnumerator AnswerLoad(string path)
     {
         Debug.Log("»ý¼º!");
         HandleableObj obj = Instantiate(buttonPrefab, buttonsParent).GetComponent<HandleableObj>();
-        obj.codeText = path;
-        obj.GetComponentInChildren<TextMeshProUGUI>().text = path;
+        TextMeshProUGUI t = obj.GetComponentInChildren<TextMeshProUGUI>();
+        t.text = path;
+        yield return null;
+        obj.codeText = t.GetParsedText();
+        yield return null;
     }
+
 
     public GameObject OutPutText(string _str, int lineIdx,GameObject content)
     {
@@ -32,7 +36,7 @@ public class AnswerManager : Singleton<AnswerManager>
         if (_str.IndexOf("<blink>") != -1)
         {
             string[] strs = _str.Split(new string[] { "<blink>", "</blink>" }, StringSplitOptions.None);
-            AnswerLoad(strs[1]);
+            StartCoroutine(AnswerLoad(strs[1]));
             StartCoroutine(ParseText(strText, strs, text));
 
             if(lineIdx!=0)
