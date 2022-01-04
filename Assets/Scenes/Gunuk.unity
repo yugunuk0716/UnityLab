@@ -2453,6 +2453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelParent: {fileID: 505203680}
   menuPopUp: {fileID: 1487310829470835641, guid: 8b191246a3eadf84abb0bc76526e62d0, type: 3}
+  clearPopUp: {fileID: 1671918266825203666, guid: 35c52bda8d10dc642be9b2c1f4be5043, type: 3}
   menuBtn: {fileID: 1564077456}
   fade: {fileID: 0}
 --- !u!114 &1567751571
@@ -2483,6 +2484,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIdx: 1
+  stageInScriptsCount: 
+  stageName: 
   btnParent: {fileID: 1828526261}
 --- !u!1 &1688769657
 GameObject:

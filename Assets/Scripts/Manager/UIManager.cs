@@ -7,7 +7,7 @@ public class UIManager : Singleton<UIManager>
 {
     public Transform panelParent;
     public MenuPopUp menuPopUp;
-
+    public ClearPopUp clearPopUp;
 
     public Button menuBtn;
     public Fade fade;
@@ -30,6 +30,7 @@ public class UIManager : Singleton<UIManager>
         cv.blocksRaycasts = false;
 
         panelDic.Add("inGameMenu", Instantiate(menuPopUp, panelParent));
+        panelDic.Add("clear", Instantiate(clearPopUp, panelParent));
 
         menuBtn.onClick.AddListener(() => 
         {
@@ -37,12 +38,8 @@ public class UIManager : Singleton<UIManager>
         }); 
     }
 
-    void Update()
-    {
-       
-    }
 
-    public void OpenPanel(string name, object data = null, int closeCount = 1) // UI 활성화 함수
+    public void OpenPanel(string name, int closeCount = 1) 
     {
         if (panelStack.Count == 0)
         {
@@ -51,12 +48,11 @@ public class UIManager : Singleton<UIManager>
             cv.blocksRaycasts = true;
         }
         panelStack.Push(panelDic[name]);
-        panelDic[name].Open(data, closeCount);
+        panelDic[name].Open(closeCount);
     }
 
-    public void ClosePanel() // UI 비활성화 함수
+    public void ClosePanel() 
     {
-        //cv = panelStack.Peek().GetComponent<CanvasGroup>();
         panelStack.Pop().Close();
         if (panelStack.Count == 0)
         {

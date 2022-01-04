@@ -21,13 +21,10 @@ public class StageManager : MonoBehaviour
     {
         if(instance != null)
         {
-            Destroy(this.gameObject);
+            Destroy(instance.gameObject);
         }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Start()
@@ -49,7 +46,7 @@ public class StageManager : MonoBehaviour
                 stageName = stageBtns[idx].GetComponentInChildren<Text>().text;
                 SceneManager.LoadScene("InGame");
             });
-        }   
+        }
         #endregion
     }
 }

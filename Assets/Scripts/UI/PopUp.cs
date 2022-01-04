@@ -23,7 +23,7 @@ public class PopUp : MonoBehaviour
         canvasGroup.blocksRaycasts = false;
     }
 
-    public virtual void Open(object data = null, int closeCount = 1) // UI 활성화 함수
+    public virtual void Open(int closeCount = 1) // UI 활성화 함수
     {
         SetAlpha(true);
     }
