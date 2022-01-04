@@ -4,22 +4,15 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Text.RegularExpressions;
 
 public class AnswerManager : Singleton<AnswerManager>
 {
-    [SerializeField] private GameObject textPrefab;
-    //[SerializeField] private GameObject buttonPrefab;
-    //[SerializeField] private Transform buttonParent;
     [SerializeField] private GameObject answerArea;
-    public Transform parentTrm;
+    [SerializeField] private GameObject textPrefab;
+    [SerializeField] private GameObject buttonPrefab;
+    [SerializeField] private Transform buttonsParent;
 
-    float answerAreaWidth;
-
-    void Start()
-    {
-        answerAreaWidth = answerArea.GetComponent<RectTransform>().rect.width;
-    }
+    int nowMaxTextLength = 0;
 
     public void AnswerLoad(string path)
     {
@@ -27,8 +20,8 @@ public class AnswerManager : Singleton<AnswerManager>
 
         foreach (string answer in strs)
         {
-            //HandleableObj obj = Instantiate(buttonPrefab, buttonParent).GetComponent<HandleableObj>();
-            //obj.codeText = answer;
+            HandleableObj obj = Instantiate(buttonPrefab, buttonsParent).GetComponent<HandleableObj>();
+            obj.codeText = answer;
         }
     }
 
@@ -42,6 +35,7 @@ public class AnswerManager : Singleton<AnswerManager>
         if (_str.IndexOf("<blink>") != -1)
         {
             string[] strs = _str.Split(new string[] { "<blink>", "</blink>" }, StringSplitOptions.None);
+            AnswerLoad(strs[1]);
             StartCoroutine(ParseText(strText, strs, text));
 
             if(lineIdx!=0)
@@ -60,9 +54,10 @@ public class AnswerManager : Singleton<AnswerManager>
 
     public void verticalScaleUp(TextMeshProUGUI strText, GameObject content)
     {
-        if (content.GetComponent<VerticalLayoutGroup>().padding.right < strText.bounds.size.x)
+        if (strText.text.Length > nowMaxTextLength)
         {
-            content.GetComponent<VerticalLayoutGroup>().padding.right = (int)(strText.bounds.size.x + answerAreaWidth * 2.5f); // 3개이상 안드감
+            content.GetComponent<VerticalLayoutGroup>().padding.right = (int)(strText.text.Length * 12);
+            nowMaxTextLength = strText.text.Length;
         }
     }
     public IEnumerator wait(TextMeshProUGUI strText, GameObject content)

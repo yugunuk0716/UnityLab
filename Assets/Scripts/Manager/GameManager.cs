@@ -5,30 +5,35 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public int usedBtnCount; // 사용중인 단어나 문장 버튼
+    public int usedBtnCount = 0; // 사용중인 단어나 문장 버튼
     private int textAreaCount;
 
     public GameObject answerParent;
-    private TextArea[] textAreas;
+    public TextArea[] textAreas;
 
     private void Start()
     {
-        textAreas = answerParent.GetComponentsInChildren<TextArea>();
-        usedBtnCount = 0;
+        textAreas = FindObjectsOfType<TextArea>();
         textAreaCount = textAreas.Length;
     }
 
     public void UsedBtnCountPlus()
     {
         usedBtnCount++;
-        if(usedBtnCount == textAreaCount)
+        CheckClear();
+    }
+
+    public void CheckClear()
+    {
+        if (usedBtnCount == textAreaCount)
         {
-            usedBtnCount = 0;
-            foreach(TextArea item in GetTextAreas())
+            usedBtnCount = 0; // 정답이든 아니든 사용한 갯수 0으로 초기화 해주기!
+
+            foreach (TextArea item in GetTextAreas())
             {
                 if (!item.bCurAnswerisCurrect)
                 {
-                    AnswerCheck.Instance.TextAreaClear(false);
+                    AnswerCheck.Instance.TextAreaClear();
                     return;
                 }
             }
@@ -39,13 +44,8 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public List<TextArea> GetTextAreas() 
+    public TextArea[] GetTextAreas() 
     {
-        List<TextArea> answer = new List<TextArea>();
-        for (int i = 0; i < textAreas.Length; i++)
-        {
-            answer.Add(textAreas[i]);
-        }
-        return answer;
+        return textAreas;
     }
 }

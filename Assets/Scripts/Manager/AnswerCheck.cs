@@ -9,65 +9,31 @@ public class AnswerCheck : Singleton<AnswerCheck>
 
     public List<string> answerList = new List<string>();
 
-    //이제는 안쓰는 답 체크 함수
-    /*
-    public bool CheckAnswer(List<TextArea> userAnswerList, List<string> realAnswerList) 
+    public void TextAreaClear() // isPremium은 그 유료로 결제한사람? 그런거라고 하네요
     {
-        bool result = false;
-
-        userAnswerList.Sort((a, b) => b.transform.position.y.CompareTo(a.transform.position.y));
-
-        if (isPremium) 
+        HandleableObj[] objs = FindObjectsOfType<HandleableObj>();
+        foreach (HandleableObj obj in objs)
         {
-            for (int i = 0; i < realAnswerList.Count; i++)
-            {
-                if (userAnswerList[i].Answer != realAnswerList[i])
-                {
-                    result = false;
-                    userAnswerList.RemoveAt(i);
-                }
-                else
-                {
-                    result = true;
-                }
-            }
+            obj.BackToOriginPosition();
         }
-        else
-        {
-            if (userAnswerList.Count == realAnswerList.Count)
-            {
-                for (int i = 0; i < realAnswerList.Count; i++)
-                {
-                    if (userAnswerList[i].Answer != realAnswerList[i])
-                    {
-                        userAnswerList.Clear();
-                        return false;
-                    }
-                    else
-                    {
-                        result = true;
-                    }
-                }
-            }
-        }
-
-        return result;
     }
-    */ 
 
+    //결제시에 특혜주는 로직, 지금은 안써서 바꿔놨어요
+    /*
     public void TextAreaClear(bool isPremiumm) // isPremium은 그 유료로 결제한사람? 그런거라고 하네요
     {
-        if (isPremium) 
+        if (isPremium)
         {
             //틀린것만
         }
         else
         {
             HandleableObj[] objs = FindObjectsOfType<HandleableObj>();
-            foreach(HandleableObj obj in objs)
+            foreach (HandleableObj obj in objs)
             {
                 obj.BackToOriginPosition();
             }
         }
     }
+    */
 }
