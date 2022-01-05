@@ -7,14 +7,17 @@ public class HandleableObj : MonoBehaviour
 {
     public string codeText;
     Vector3 originPos;
+    private Transform originParent;
 
     private void Start()
     {
         originPos = this.transform.position;
+        originParent = this.transform.parent;
     }
 
     public void BackToOriginPosition()
     {
         this.transform.position = originPos;
+        this.transform.parent = originParent;
     }
 }

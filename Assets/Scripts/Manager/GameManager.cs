@@ -8,14 +8,21 @@ public class GameManager : Singleton<GameManager>
     public int usedBtnCount = 0; // 사용중인 단어나 문장 버튼
     private int textAreaCount;
 
-    public GameObject answerParent;
     public TextArea[] textAreas;
 
     private void Start()
     {
+        StartCoroutine(CheckAndSetTextAreaCount());
+    }
+
+    IEnumerator CheckAndSetTextAreaCount()
+    {
+        yield return new WaitForSeconds(0.3f);
+
         textAreas = FindObjectsOfType<TextArea>();
         textAreaCount = textAreas.Length;
     }
+
 
     public void UsedBtnCountPlus()
     {

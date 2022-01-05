@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5663200095412874651}
   m_Layer: 5
   m_Name: AnswerArea
-  m_TagString: Untagged
+  m_TagString: AnswerArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
