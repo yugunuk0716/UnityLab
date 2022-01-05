@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
+
 
 public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
@@ -37,7 +39,7 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         if (dragObj == null) return;
 
         GameObject item = eventData.pointerCurrentRaycast.gameObject;
-        if (item != null)
+        if (item != null && (item.name.Contains("AnswerArea") || item.name.Contains("textPrefab")))
         {
             TextArea textArea = item.GetComponentInChildren<TextArea>();
             if (textArea != null)
@@ -45,7 +47,7 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
                 dragObj.transform.SetParent(textArea.transform);
                 dragObj.transform.position = textArea.transform.position + new Vector3(215, 0, 0);
                 dragObj.GetComponent<Image>().raycastTarget = true;
-                if (textArea.Answer == dragObj.codeText) textArea.bCurAnswerisCurrect = true;
+                if (textArea.Answer == dragObj.GetComponentInChildren<TextMeshProUGUI>().text) textArea.bCurAnswerisCurrect = true;
                 GameManager.Instance.UsedBtnCountPlus();
                 dragObj = null;
                 return;

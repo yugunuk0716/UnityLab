@@ -75,6 +75,8 @@ public class AnswerManager : Singleton<AnswerManager>
             if (i % 2 != 0)
             {
                 testMake(StrText);
+                TextArea area = StrText.transform.parent.GetComponentInChildren<TextArea>();
+                if (area != null) area.Answer = strs[i];
                 strs[i] = "                 "; 
 			}
             StrText.text += strs[i];

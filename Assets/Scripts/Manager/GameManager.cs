@@ -23,7 +23,6 @@ public class GameManager : Singleton<GameManager>
         textAreaCount = textAreas.Length;
     }
 
-
     public void UsedBtnCountPlus()
     {
         usedBtnCount++;
