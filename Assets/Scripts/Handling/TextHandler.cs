@@ -11,10 +11,18 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (eventData.selectedObject.CompareTag("Handleable"))
+        try
         {
-            dragObj = eventData.selectedObject.GetComponent<HandleableObj>();
-            dragObj.transform.SetParent(dragObjsTemporaryParent);
+            if (eventData.selectedObject.CompareTag("Handleable"))
+            {
+                dragObj = eventData.selectedObject.GetComponent<HandleableObj>();
+                dragObj.transform.SetParent(dragObjsTemporaryParent);
+                dragObj.GetComponent<Image>().raycastTarget = false;
+            }
+        }
+        catch
+        {
+
         }
     }
 
@@ -28,22 +36,23 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
     {
         if (dragObj == null) return;
 
-        foreach (GameObject item in eventData.hovered)
+        GameObject item = eventData.pointerCurrentRaycast.gameObject;
+        if (item != null)
         {
-            Debug.Log(item.name);
             TextArea textArea = item.GetComponentInChildren<TextArea>();
-            if (textArea == null) continue;
-            dragObj.transform.SetParent(textArea.transform);
-            dragObj.transform.position = textArea.transform.position + new Vector3(215, 0, 0);
-
-            if (textArea.Answer == dragObj.codeText) textArea.bCurAnswerisCurrect = true;
-            GameManager.Instance.UsedBtnCountPlus();
-            return;
+            if (textArea != null)
+            {
+                dragObj.transform.SetParent(textArea.transform);
+                dragObj.transform.position = textArea.transform.position + new Vector3(215, 0, 0);
+                dragObj.GetComponent<Image>().raycastTarget = true;
+                if (textArea.Answer == dragObj.codeText) textArea.bCurAnswerisCurrect = true;
+                GameManager.Instance.UsedBtnCountPlus();
+                dragObj = null;
+                return;
+            }
         }
-
+        dragObj.GetComponent<Image>().raycastTarget = true;
         dragObj.BackToOriginPosition();
         dragObj = null;
     }
-
-
 }
