@@ -111,7 +111,7 @@ public class SentenceManager : MonoBehaviour
 
     public void ToTextFileSave()
     {
-        File.WriteAllText(Application.dataPath + $"/04.textfiles/text{fileindex}.txt", resultText);
+        File.WriteAllText(Application.persistentDataPath + $"/04.textfiles/text{fileindex}.txt", resultText);
         Debug.Log("저장 완료, 저장된 내용:" + File.ReadAllText(Application.dataPath + $"/04.textfiles/text{fileindex}.txt"));
         fileindex++;
     }

@@ -11,7 +11,7 @@ public class StageExplanation : MonoBehaviour
 
     private void Start()
     {
-        string path = Application.dataPath + "/Resources/Explanation" + StageManager.instance.stageIdx + ".txt";
+        string path = Application.persistentDataPath + "/Resources/Explanation" + StageManager.instance.stageIdx + ".txt";
 
         SetStageExplanationText(path);
     }

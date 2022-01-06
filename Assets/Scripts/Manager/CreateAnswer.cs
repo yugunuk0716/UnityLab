@@ -28,7 +28,7 @@ public class CreateAnswer : MonoBehaviour
 
     IEnumerator SetScriptsName(string stageIdx, GameObject buttonObj)
     {
-        string filePath = Application.dataPath + "/Resources/Question " + stageIdx + ".txt";
+        string filePath = Application.persistentDataPath + "/Resources/Question " + stageIdx + ".txt";
         string str = File.ReadAllText(filePath);
         string[] strs = str.Split(new string[] { "class", ":" }, StringSplitOptions.None);
 
