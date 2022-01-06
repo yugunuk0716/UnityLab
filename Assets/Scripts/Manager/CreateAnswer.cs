@@ -20,6 +20,10 @@ public class CreateAnswer : MonoBehaviour
 		{
             CreateBase(i + 1);
         }
+        string answerTextfilePath = Application.dataPath + "/Resources/Answer" + StageManager.instance.stageIdx + ".txt";
+        string answer = File.ReadAllText(answerTextfilePath);
+
+        StartCoroutine(AnswerManager.Instance.AnswerLoad(answer));
     }
 
     IEnumerator SetScriptsName(string stageIdx, GameObject buttonObj)
@@ -75,6 +79,8 @@ public class CreateAnswer : MonoBehaviour
             idx++;
             AnswerManager.Instance.OutPutText(item,idx, parent);
         }
+
+
         return str;
     }
 }
