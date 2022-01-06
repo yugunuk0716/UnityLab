@@ -11652,7 +11652,7 @@ MonoBehaviour:
   stageIdx: 1
   stageInScriptsCount: 
   stageName: 
-  isClear: 1
+  isClear: 0
   btnParent: {fileID: 2040829482}
 --- !u!4 &1269682387
 Transform:
