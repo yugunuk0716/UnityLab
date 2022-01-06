@@ -76,11 +76,29 @@ public class AnswerManager : Singleton<AnswerManager>
         {
             if (i % 2 != 0)
             {
+                Debug.Log("답안 문자열 : " + strs[i]);
                 testMake(StrText);
-                TextArea area = StrText.transform.parent.GetComponentInChildren<TextArea>();
-                if (area != null) area.Answer = strs[i];
-                strs[i] = "                 "; 
-			}
+                TextArea [] areas = StrText.transform.parent.GetComponentsInChildren<TextArea>();
+                TextArea makeArea = null;
+                foreach(TextArea item in areas)
+                {
+                    if(item.isUsed == false)
+                    {
+                        makeArea = item;
+                        makeArea.isUsed = true;
+                        break;
+                    }
+                }
+
+                if (makeArea != null)
+                {
+                    makeArea.GetComponentInChildren<TextMeshProUGUI>().text = strs[i];
+                    yield return null;
+                    makeArea.Answer = makeArea.GetComponentInChildren<TextMeshProUGUI>().GetParsedText();
+                    yield return null;
+                }
+                strs[i] = "                 ";
+            }
             StrText.text += strs[i];
             yield return null;
         }

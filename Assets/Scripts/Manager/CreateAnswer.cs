@@ -80,7 +80,6 @@ public class CreateAnswer : MonoBehaviour
             AnswerManager.Instance.OutPutText(item,idx, parent);
         }
 
-
         return str;
     }
 }
