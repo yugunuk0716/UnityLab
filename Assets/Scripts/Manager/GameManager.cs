@@ -40,7 +40,7 @@ public class GameManager : Singleton<GameManager>
                 if (!item.bCurAnswerisCurrect)
                 {
                     AnswerCheck.Instance.TextAreaClear();
-                    EffectManager.Instance.SetCamShake(1);
+                    //EffectManager.Instance.SetCamShake(1);
                     EffectManager.Instance.FalseEffect();
                     return;
                 }

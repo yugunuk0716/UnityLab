@@ -26,7 +26,6 @@ public class StageLock : MonoBehaviour
 
     public int LoadData(int stageNum)
     {
-        
         return PlayerPrefs.GetInt($"{stageNum}");
     }
 
