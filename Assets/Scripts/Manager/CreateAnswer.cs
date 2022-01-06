@@ -20,7 +20,7 @@ public class CreateAnswer : MonoBehaviour
 		{
             CreateBase(i + 1);
         }
-        string answerTextfilePath = Application.dataPath + "/Resources/Answer" + StageManager.instance.stageIdx + ".txt";
+        string answerTextfilePath = Application.persistentDataPath + "/Resources/Answer" + StageManager.instance.stageIdx + ".txt";
         string answer = File.ReadAllText(answerTextfilePath);
 
         StartCoroutine(AnswerManager.Instance.AnswerLoad(answer));
@@ -61,7 +61,7 @@ public class CreateAnswer : MonoBehaviour
 
     private string ReadTxt(string stageIdx,GameObject parent)
     {
-        string filePath = Application.dataPath + "/Resources/Question " + stageIdx + ".txt";
+        string filePath = Application.persistentDataPath + "/Resources/Question " + stageIdx + ".txt";
         string str = File.ReadAllText(filePath);
 
         if (str.Contains("<newLine>")) str = str.Replace("<newLine>", "^");
