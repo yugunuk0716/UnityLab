@@ -7,7 +7,7 @@ public class TextArea : MonoBehaviour, IResettable
 {
     public string Answer;
     public int index;
-
+    public bool isUsed = false;
     public bool bCurAnswerisCurrect = false;
 
     public event EventHandler Death;
@@ -16,6 +16,4 @@ public class TextArea : MonoBehaviour, IResettable
     {
         
     }
-
-
 }

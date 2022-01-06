@@ -47,7 +47,20 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
                 dragObj.transform.SetParent(textArea.transform);
                 dragObj.transform.position = textArea.transform.position + new Vector3(215, 0, 0);
                 dragObj.GetComponent<Image>().raycastTarget = true;
-                if (textArea.Answer == dragObj.GetComponentInChildren<TextMeshProUGUI>().text) textArea.bCurAnswerisCurrect = true;
+
+
+                Debug.Log(textArea.Answer);
+                Debug.Log(dragObj.GetComponentInChildren<TextMeshProUGUI>().text);
+
+                if (textArea.Answer == dragObj.codeText)
+                {
+                    textArea.bCurAnswerisCurrect = true;
+                    Debug.Log("정답");
+                }
+                else
+                {
+                    Debug.Log("정답 : " + textArea.Answer);
+                }
                 GameManager.Instance.UsedBtnCountPlus();
                 dragObj = null;
                 return;
