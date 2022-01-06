@@ -40,10 +40,12 @@ public class GameManager : Singleton<GameManager>
                 if (!item.bCurAnswerisCurrect)
                 {
                     AnswerCheck.Instance.TextAreaClear();
+                    EffectManager.Instance.SetCamShake(1);
+                    EffectManager.Instance.FalseEffect();
                     return;
                 }
             }
-
+            StageManager.instance.isClear = true;
             UIManager.Instance.OpenPanel("clear");
             StageManager.instance.SaveData();
             Debug.Log("정답입니다");
