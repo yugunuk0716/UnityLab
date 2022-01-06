@@ -74,13 +74,22 @@ public class CreateAnswer : MonoBehaviour
 
         string[] strs = str.Split('^');
         int idx = 0;
+
         foreach (var item in strs)
         {
             idx++;
             AnswerManager.Instance.OutPutText(item,idx, parent);
+            StartCoroutine(WaitMilliSec());
         }
-
-
+        
         return str;
     }
+
+    IEnumerator WaitMilliSec()
+    {
+        yield return new WaitForSeconds(0.1f);
+        
+        AnswerManager.Instance.nowMaxTextLength = 0;
+    }
+
 }

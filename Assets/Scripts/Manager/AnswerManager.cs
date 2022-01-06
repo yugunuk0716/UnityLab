@@ -12,7 +12,7 @@ public class AnswerManager : Singleton<AnswerManager>
     [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private Transform buttonsParent;
 
-    int nowMaxTextLength = 0;
+    public int nowMaxTextLength = 0;
 
     public IEnumerator AnswerLoad(string str)
     {
@@ -41,26 +41,24 @@ public class AnswerManager : Singleton<AnswerManager>
             string[] strs = _str.Split(new string[] { "<blink>", "</blink>" }, StringSplitOptions.None);
             StartCoroutine(ParseText(strText, strs, text));
 
-            if(lineIdx!=0)
-            lineIndex.text = lineIdx.ToString();
+            if(lineIdx!=0)  lineIndex.text = lineIdx.ToString();
             StartCoroutine(wait(strText, content));
+            Debug.Log("실행한다 했다!");
             return text;
         }
-
         strText.text = _str;
-        if (lineIdx != 0)
-            lineIndex.text = lineIdx.ToString();
 
+        if (lineIdx != 0) lineIndex.text = lineIdx.ToString();
         StartCoroutine(wait(strText, content));
         return text;
     }
 
     public void verticalScaleUp(TextMeshProUGUI strText, GameObject content)
     {
-        if (strText.text.Length > nowMaxTextLength)
+        VerticalLayoutGroup vlg = content.GetComponent<VerticalLayoutGroup>();
+        if (strText.text.Length > vlg.padding.right/12)
         {
-            content.GetComponent<VerticalLayoutGroup>().padding.right = (int)(strText.text.Length * 12);
-            nowMaxTextLength = strText.text.Length;
+            vlg.padding.right = strText.text.Length * 12;
         }
     }
     public IEnumerator wait(TextMeshProUGUI strText, GameObject content)
@@ -76,11 +74,29 @@ public class AnswerManager : Singleton<AnswerManager>
         {
             if (i % 2 != 0)
             {
+                Debug.Log("답안 문자열 : " + strs[i]);
                 testMake(StrText);
-                TextArea area = StrText.transform.parent.GetComponentInChildren<TextArea>();
-                if (area != null) area.Answer = strs[i];
-                strs[i] = "                 "; 
-			}
+                TextArea [] areas = StrText.transform.parent.GetComponentsInChildren<TextArea>();
+                TextArea makeArea = null;
+                foreach(TextArea item in areas)
+                {
+                    if(item.isUsed == false)
+                    {
+                        makeArea = item;
+                        makeArea.isUsed = true;
+                        break;
+                    }
+                }
+
+                if (makeArea != null)
+                {
+                    makeArea.GetComponentInChildren<TextMeshProUGUI>().text = strs[i];
+                    yield return null;
+                    makeArea.Answer = makeArea.GetComponentInChildren<TextMeshProUGUI>().GetParsedText();
+                    yield return null;
+                }
+                strs[i] = "                 ";
+            }
             StrText.text += strs[i];
             yield return null;
         }
