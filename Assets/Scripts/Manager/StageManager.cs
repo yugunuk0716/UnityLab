@@ -62,8 +62,22 @@ public class StageManager : MonoBehaviour
         #endregion
     }
 
-    public void SaveData() 
+    public void SaveData(bool isStage) 
     {
-        stageLock.SaveData(stageIdx);
+        if (isStage)
+        {
+            stageLock.SaveData(stageIdx);
+        }
+        else
+        {
+            stageLock.SaveData(true);
+        }
+    }
+
+
+
+    public int LoadData() 
+    {
+        return stageLock.LoadData("IsInGame");
     }
 }

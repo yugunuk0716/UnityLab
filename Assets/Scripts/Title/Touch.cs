@@ -12,7 +12,7 @@ public class Touch : MonoBehaviour
 
     private void Start()
     {
-        if (StageManager.instance.isClear)
+        if (StageManager.instance.LoadData() == 1)
         {
             titleCanvasGroup.gameObject.SetActive(false);
         }
