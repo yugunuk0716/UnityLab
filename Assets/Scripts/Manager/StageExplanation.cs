@@ -11,14 +11,13 @@ public class StageExplanation : MonoBehaviour
 
     private void Start()
     {
-        string path = Application.persistentDataPath + "/Resources/Explanation" + StageManager.instance.stageIdx + ".txt";
-
-        SetStageExplanationText(path);
+        TextAsset fileData = Resources.Load("Explanation" + StageManager.instance.stageIdx) as TextAsset;
+        SetStageExplanationText(fileData.text);
     }
 
     public void SetStageExplanationText(string path)
     {
-        string str = File.ReadAllText(path);
+        string str = path;
 
         ChangeText(str);
     }

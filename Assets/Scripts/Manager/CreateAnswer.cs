@@ -16,20 +16,23 @@ public class CreateAnswer : MonoBehaviour
     private List<GameObject> scriptsArray = new List<GameObject>();
     void Start()
     {
-		for (int i = 0; i < StageManager.instance.stageInScriptsCount[StageManager.instance.stageIdx]; i++)
+        
+        for (int i = 0; i < StageManager.instance.stageInScriptsCount[StageManager.instance.stageIdx]; i++)
 		{
             CreateBase(i + 1);
         }
-        string answerTextfilePath = Application.persistentDataPath + "/Resources/Answer" + StageManager.instance.stageIdx + ".txt";
-        string answer = File.ReadAllText(answerTextfilePath);
+        TextAsset fileData = Resources.Load("Answer" + StageManager.instance.stageIdx) as TextAsset;
+        Debug.Log(fileData.text);
+        //string answerTextfilePath = Application.persistentDataPath + "/Resources/Answer" + StageManager.instance.stageIdx + ".txt";
+        string answer = fileData.text;
 
         StartCoroutine(AnswerManager.Instance.AnswerLoad(answer));
     }
 
     IEnumerator SetScriptsName(string stageIdx, GameObject buttonObj)
     {
-        string filePath = Application.persistentDataPath + "/Resources/Question " + stageIdx + ".txt";
-        string str = File.ReadAllText(filePath);
+        TextAsset fileData = Resources.Load("Question " + stageIdx) as TextAsset;
+        string str = fileData.text;
         string[] strs = str.Split(new string[] { "class", ":" }, StringSplitOptions.None);
 
         TextMeshProUGUI t = buttonObj.GetComponentInChildren<TextMeshProUGUI>();
@@ -61,8 +64,9 @@ public class CreateAnswer : MonoBehaviour
 
     private string ReadTxt(string stageIdx,GameObject parent)
     {
-        string filePath = Application.persistentDataPath + "/Resources/Question " + stageIdx + ".txt";
-        string str = File.ReadAllText(filePath);
+        TextAsset fileData = Resources.Load("Question " + stageIdx) as TextAsset;
+        Debug.Log(fileData.text);
+        string str = fileData.text;
 
         if (str.Contains("<newLine>")) str = str.Replace("<newLine>", "^");
         if (str.Contains("<1>"))    str = str.Replace("<1>", "  ");
