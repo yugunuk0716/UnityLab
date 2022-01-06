@@ -62,16 +62,10 @@ public class StageManager : MonoBehaviour
         #endregion
     }
 
-    public void SaveData(bool isStage) 
+    public void SaveData() 
     {
-        if (isStage)
-        {
-            stageLock.SaveData(stageIdx);
-        }
-        else
-        {
-            stageLock.SaveData(true);
-        }
+        stageLock.SaveData(stageIdx);
+        stageLock.SaveData(true);
     }
 
 
