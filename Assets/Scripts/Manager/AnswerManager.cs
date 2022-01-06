@@ -12,7 +12,7 @@ public class AnswerManager : Singleton<AnswerManager>
     [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private Transform buttonsParent;
 
-    int nowMaxTextLength = 0;
+    public int nowMaxTextLength = 0;
 
     public IEnumerator AnswerLoad(string str)
     {
@@ -41,26 +41,24 @@ public class AnswerManager : Singleton<AnswerManager>
             string[] strs = _str.Split(new string[] { "<blink>", "</blink>" }, StringSplitOptions.None);
             StartCoroutine(ParseText(strText, strs, text));
 
-            if(lineIdx!=0)
-            lineIndex.text = lineIdx.ToString();
+            if(lineIdx!=0)  lineIndex.text = lineIdx.ToString();
             StartCoroutine(wait(strText, content));
+            Debug.Log("실행한다 했다!");
             return text;
         }
-
         strText.text = _str;
-        if (lineIdx != 0)
-            lineIndex.text = lineIdx.ToString();
 
+        if (lineIdx != 0) lineIndex.text = lineIdx.ToString();
         StartCoroutine(wait(strText, content));
         return text;
     }
 
     public void verticalScaleUp(TextMeshProUGUI strText, GameObject content)
     {
-        if (strText.text.Length > nowMaxTextLength)
+        VerticalLayoutGroup vlg = content.GetComponent<VerticalLayoutGroup>();
+        if (strText.text.Length > vlg.padding.right/12)
         {
-            content.GetComponent<VerticalLayoutGroup>().padding.right = (int)(strText.text.Length * 12);
-            nowMaxTextLength = strText.text.Length;
+            vlg.padding.right = strText.text.Length * 12;
         }
     }
     public IEnumerator wait(TextMeshProUGUI strText, GameObject content)
