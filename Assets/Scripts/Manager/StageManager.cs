@@ -50,6 +50,7 @@ public class StageManager : MonoBehaviour
             }
             stageBtns[idx].onClick.AddListener(() =>
             {
+                SoundManager.Instance.PlaySfxSound(SoundManager.Instance.uiSfx, 1);
                 stageIdx = idx + 1;
                 stageName = stageBtns[idx].GetComponentInChildren<Text>().text;
                 SceneManager.LoadScene("InGame");

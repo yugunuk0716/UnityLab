@@ -23,6 +23,7 @@ public class Touch : MonoBehaviour
         normal.startLifetime = 0.00001f;
 
         changeParticle.gameObject.SetActive(true);
+        SoundManager.Instance.PlaySfxSound(SoundManager.Instance.uiSfx, 1);
 
         yield return new WaitForSeconds(1f);
 
