@@ -10,6 +10,14 @@ public class Touch : MonoBehaviour
     public CanvasGroup titleCanvasGroup;
 
 
+    private void Start()
+    {
+        if (StageManager.instance.isClear)
+        {
+            titleCanvasGroup.gameObject.SetActive(false);
+        }
+    }
+
     public void ChangeTitleStart()
     {
         StartCoroutine(ChangeTitle());

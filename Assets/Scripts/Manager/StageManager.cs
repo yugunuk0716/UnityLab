@@ -14,10 +14,13 @@ public class StageManager : MonoBehaviour
 
     public string stageName = "";
 
+    public bool isClear = false;
+
     public Transform btnParent; //버튼 부모
     public Button[] stageBtns { get; private set; } //인게임 이동 버튼
 
     private StageLock stageLock;
+
 
     private void Awake()
     {
