@@ -1,1 +1,1 @@
-score,highScore,SetInt,gameManager.UpdateScore,UpdateHighScore,GetInt,gameManager.UpdateLife,OnTriggerEnter2D,rewardScore,life,DamageEffect,speed
+score,highScore,SetInt,gameManager.UpdateScore,UpdateHighScore,UpdateHighScore,GetInt,gameManager.UpdateLife,OnTriggerEnter2D,rewardScore,life,DamageEffect,speed

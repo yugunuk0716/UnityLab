@@ -26,6 +26,10 @@ public class SentenceManager : MonoBehaviour
 
     public int fileindex = 0;
 
+    private void Start()
+    {
+        inputTab.text = "0";
+    }
 
     /*   public void Update()
        {
@@ -36,7 +40,6 @@ public class SentenceManager : MonoBehaviour
     public void SetIsAnswerOrSpace(int index)
     {
         Color color;
-
 
         if(index == 0)
         {
