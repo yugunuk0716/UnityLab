@@ -130,7 +130,7 @@ public class CreateAnswer : MonoBehaviour
         {
             
         }
-        if(wordColor.Length < (int)colorName)
+        if(wordColor.Length <= (int)colorName)
         {
             return;
         }
