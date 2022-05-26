@@ -38,7 +38,7 @@ public class CreateAnswer : MonoBehaviour
         TextMeshProUGUI t = buttonObj.GetComponentInChildren<TextMeshProUGUI>();
         t.text = strs[1];
         yield return null;
-        t.text = t.GetParsedText() + ".cs";
+        t.text = $"{t.GetParsedText().Substring(0, t.GetParsedText().Length - 1)}.cs";
     }
 
     private void CreateBase(int i)
