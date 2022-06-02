@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6cb918924e69064aa8c970a05be3c5c, type: 3}
+  m_Name: Quaternion.identity
+  m_EditorClassIdentifier: 
+  textName: Quaternion.identity
+  textInfo: "\uC774 \uCFFC\uD130\uB2C8\uC5B8\uC740 \"\uD68C\uC804 \uC5C6\uC74C\"\uC744
+    \uC758\uBBF8\uD569\uB2C8\uB2E4"

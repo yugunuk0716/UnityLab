@@ -8,12 +8,13 @@ public class UIManager : Singleton<UIManager>
     public Transform panelParent;
     public MenuPopUp menuPopUp;
     public ClearPopUp clearPopUp;
+    public TextInfoPopUp tInfoPopUp;
 
     public Button menuBtn;
     public Fade fade;
 
     private CanvasGroup cv;
-    Dictionary<string, PopUp> panelDic = new Dictionary<string, PopUp>();
+    public Dictionary<string, PopUp> panelDic = new Dictionary<string, PopUp>();
     Stack<PopUp> panelStack = new Stack<PopUp>();
 
 
@@ -31,6 +32,7 @@ public class UIManager : Singleton<UIManager>
 
         panelDic.Add("inGameMenu", Instantiate(menuPopUp, panelParent));
         panelDic.Add("clear", Instantiate(clearPopUp, panelParent));
+        panelDic.Add("tInfo", Instantiate(tInfoPopUp, panelParent));
 
         menuBtn.onClick.AddListener(() => 
         {

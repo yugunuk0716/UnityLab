@@ -45,8 +45,8 @@ public class GameManager : Singleton<GameManager>
                     return;
                 }
             }
-            StageManager.instance.isClear = true;
             UIManager.Instance.OpenPanel("clear");
+            StageManager.instance.isClear = true;
             StageManager.instance.SaveData();
             Debug.Log("정답입니다");
         }
