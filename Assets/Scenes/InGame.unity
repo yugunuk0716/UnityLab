@@ -1071,7 +1071,7 @@ GameObject:
   - component: {fileID: 800854570}
   - component: {fileID: 800854569}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: Option
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1645,7 +1645,7 @@ MonoBehaviour:
   menuPopUp: {fileID: 1487310829470835641, guid: 8b191246a3eadf84abb0bc76526e62d0, type: 3}
   clearPopUp: {fileID: 1671918266825203666, guid: 35c52bda8d10dc642be9b2c1f4be5043, type: 3}
   tInfoPopUp: {fileID: 8959583385519404680, guid: e299909a9fa48fa41b4be3c7a0fae069, type: 3}
-  menuBtn: {fileID: 800854570}
+  menuBtn: {fileID: 1241940208}
   fade: {fileID: 0}
 --- !u!114 &969255560
 MonoBehaviour:
@@ -1858,7 +1858,7 @@ GameObject:
   - component: {fileID: 1032454204}
   - component: {fileID: 1032454203}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Minimalize
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2140,7 +2140,7 @@ GameObject:
   - component: {fileID: 1241940208}
   - component: {fileID: 1241940207}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2475,7 +2475,7 @@ GameObject:
   - component: {fileID: 1497394591}
   - component: {fileID: 1497394590}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Maximalize
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

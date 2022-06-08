@@ -54,7 +54,7 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
                 {
                     Debug.Log("Á¤´ä : " + textArea.Answer);
                 }
-                GameManager.Instance.UsedBtnCountPlus();
+                GM.Instance.UsedBtnCountPlus();
                 dragObj = null;
                 return;
             }
