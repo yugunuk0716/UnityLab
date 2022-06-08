@@ -38,7 +38,7 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
             if (textArea != null)
             {
                 dragObj.transform.SetParent(textArea.transform);
-                dragObj.transform.position = textArea.transform.position + new Vector3(215, 0, 0);
+                dragObj.transform.position = textArea.transform.position + new Vector3((textArea.GetComponent<RectTransform>().rect.width/2),0,0);
                 dragObj.GetComponent<Image>().raycastTarget = true;
 
 

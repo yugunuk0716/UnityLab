@@ -13,10 +13,37 @@ public class CreateAnswer : MonoBehaviour
     [SerializeField] private GameObject basePrefab;
     [SerializeField] private GameObject buttonPrefab;
 
+    //보라색만 체크해놨는데 나머지는 알아서 채워 넣으세요
+    //회색은 수정중에 있습니다 몰?루요
+    //단어 뒤에 공백 하나 들어가야해요
+	readonly string[][] wordColor =
+	{
+		new string[]{ "while ","switch ", "if ", "return ", "yield " ,"for ","foreach ","case ","default "},
+	};
+    //색깔 순서임
+    //Purple =0,
+    //Blue, 예약어 색일걸
+    //Skyblue, 지역변수 색일걸
+    //Yellow, 함수 색일걸
+    //TumbleWeed, 문자열
+    //Green, 클래스명 색일걸
+    //Cyan, Vector 색일걸
+    //Gray 디폴트 색일걸
+    readonly string[] ColorData = { 
+        "#<color=#D8A0DF>", 
+        "#<color=#569CDU>", 
+        "#<color=#9CDCFE>",
+        "#<color=#DCDCAA>",
+        "#<color=#D39D85>",
+        "#<color=#4EC9B0>",
+        "#<color=#B5CEA8>",
+        "#<color=#DCDCDC>"};
+
     private List<GameObject> scriptsArray = new List<GameObject>();
     void Start()
     {
-        
+
+
         for (int i = 0; i < StageManager.instance.stageInScriptsCount[StageManager.instance.stageIdx]; i++)
 		{
             CreateBase(i + 1);
@@ -38,7 +65,7 @@ public class CreateAnswer : MonoBehaviour
         TextMeshProUGUI t = buttonObj.GetComponentInChildren<TextMeshProUGUI>();
         t.text = strs[1];
         yield return null;
-        t.text = t.GetParsedText() + ".cs";
+        t.text = $"{t.GetParsedText().Substring(0, t.GetParsedText().Length - 1)}.cs";
     }
 
     private void CreateBase(int i)
@@ -74,6 +101,14 @@ public class CreateAnswer : MonoBehaviour
         if (str.Contains("<3>"))    str = str.Replace("<3>", "      ");
         if (str.Contains("<4>"))    str = str.Replace("<4>", "        ");
 
+        SetReservedWordColor(str, WordColor.Purple);
+        SetReservedWordColor(str, WordColor.Blue);
+        SetReservedWordColor(str, WordColor.Skyblue);
+        SetReservedWordColor(str, WordColor.Green);
+        SetReservedWordColor(str, WordColor.Cyan);
+        SetReservedWordColor(str, WordColor.TumbleWeed);
+        SetReservedWordColor(str, WordColor.Yellow);
+
         //\W<>=#*
 
         string[] strs = str.Split('^');
@@ -89,6 +124,25 @@ public class CreateAnswer : MonoBehaviour
         return str;
     }
 
+    void SetReservedWordColor(string str,WordColor colorName)
+    {
+        if (colorName == WordColor.Gray)
+        {
+            
+        }
+        if(wordColor.Length <= (int)colorName)
+        {
+            return;
+        }
+        for (int j = 0; j < wordColor[(int)colorName].Length; j++)
+        {
+            if (str.Contains(wordColor[(int)colorName][j]))
+            {
+                str = str.Replace(wordColor[(int)colorName][j], ColorData[(int)colorName] + wordColor[0][j].Substring(0, wordColor[(int)colorName][j].Length - 1) + "</color>");
+            }
+        }
+    }
+
     IEnumerator WaitMilliSec()
     {
         yield return new WaitForSeconds(0.1f);
@@ -96,4 +150,15 @@ public class CreateAnswer : MonoBehaviour
         AnswerManager.Instance.nowMaxTextLength = 0;
     }
 
+}
+public enum WordColor
+{
+	Purple = 0,
+	Blue,
+	Skyblue,
+	Yellow,
+	TumbleWeed,
+	Green,
+	Cyan,
+	Gray
 }

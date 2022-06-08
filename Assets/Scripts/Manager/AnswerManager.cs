@@ -14,6 +14,17 @@ public class AnswerManager : Singleton<AnswerManager>
 
     public int nowMaxTextLength = 0;
 
+    public List<TextSO> texts = new List<TextSO>();
+    public Dictionary<string, TextSO> textInfoDictionary = new Dictionary<string, TextSO>();
+
+    private void Awake()
+    {
+        foreach (TextSO text in texts)
+        {
+            textInfoDictionary.Add(text.textName, text);
+        }
+    }
+
     public IEnumerator AnswerLoad(string str)
     {
         string[] answers = str.Split(',');
