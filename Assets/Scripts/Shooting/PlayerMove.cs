@@ -21,12 +21,13 @@ public class PlayerMove : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            targetPosition =Input.mousePosition;
+            Debug.Log(Input.mousePosition);
 
-            targetPosition.x = Mathf.Clamp(targetPosition.x, gameManager.minPosition.x, gameManager.maxPosition.x);
-            targetPosition.y = Mathf.Clamp(targetPosition.y, gameManager.minPosition.y, gameManager.maxPosition.y);
+			//targetPosition.x = Mathf.Clamp(targetPosition.x, gameManager.minPosition.x, gameManager.maxPosition.x);
+			targetPosition.y = Mathf.Clamp(targetPosition.y, 370f, 1540f);
 
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPosition, Time.deltaTime* speed);
+			transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime* speed);
         }
     }
 
