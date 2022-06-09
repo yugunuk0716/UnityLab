@@ -7,6 +7,7 @@ public class GM : Singleton<GM>
 {
     public int usedBtnCount = 0; // 사용중인 단어나 문장 버튼
     private int textAreaCount;
+    public InGameOpen inGameOpen;
 
     public TextArea[] textAreas;
 
@@ -47,6 +48,14 @@ public class GM : Singleton<GM>
             }
             UIManager.Instance.OpenPanel("clear");
             ItemManager.Instance.coin += 10;
+            if (Resources.Load("Stage/Stage " + StageManager.instance.stageIdx) == null)
+            {
+                UIManager.Instance.OpenPanel("clear");
+            }
+            else
+            {
+                inGameOpen.Clear();
+            }
             StageManager.instance.isClear = true;
             StageManager.instance.SaveData();
             Debug.Log("정답입니다");
