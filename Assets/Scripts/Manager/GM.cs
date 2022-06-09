@@ -46,6 +46,7 @@ public class GM : Singleton<GM>
                 }
             }
             UIManager.Instance.OpenPanel("clear");
+            ItemManager.Instance.coin += 10;
             StageManager.instance.isClear = true;
             StageManager.instance.SaveData();
             Debug.Log("정답입니다");

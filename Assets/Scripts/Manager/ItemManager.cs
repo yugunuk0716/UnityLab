@@ -10,6 +10,15 @@ public class ItemManager : Singleton<ItemManager>
 
     private void Awake()
     {
+       
+        
+        if(Instance != this)
+        {
+            Destroy(this);
+        }
+
+        DontDestroyOnLoad(this);
+
         coin = PlayerPrefs.GetInt("coin", coin);
         hintItemCount = PlayerPrefs.GetInt("hint", hintItemCount);
     }

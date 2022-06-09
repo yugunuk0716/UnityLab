@@ -8,8 +8,11 @@ public class UIManager : Singleton<UIManager>
     public Transform panelParent;
     public MenuPopUp menuPopUp;
     public ClearPopUp clearPopUp;
+    public HintPopUp hintPopUp;
     public TextInfoPopUp tInfoPopUp;
 
+
+    public Button hintButton;
     public Button menuBtn;
     public Fade fade;
 
@@ -32,8 +35,13 @@ public class UIManager : Singleton<UIManager>
 
         panelDic.Add("inGameMenu", Instantiate(menuPopUp, panelParent));
         panelDic.Add("clear", Instantiate(clearPopUp, panelParent));
+        panelDic.Add("hint", Instantiate(hintPopUp, panelParent));
         panelDic.Add("tInfo", Instantiate(tInfoPopUp, panelParent));
 
+        hintButton.onClick.AddListener(() => 
+        {
+            OpenPanel("hint");
+        });
         menuBtn.onClick.AddListener(() => 
         {
             OpenPanel("inGameMenu");
