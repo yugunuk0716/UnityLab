@@ -13,18 +13,11 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        try
+        if (eventData.selectedObject.CompareTag("Handleable"))
         {
-            if (eventData.selectedObject.CompareTag("Handleable"))
-            {
-                dragObj = eventData.selectedObject.GetComponent<HandleableObj>();
-                dragObj.transform.SetParent(dragObjsTemporaryParent);
-                dragObj.GetComponent<Image>().raycastTarget = false;
-            }
-        }
-        catch
-        {
-
+            dragObj = eventData.selectedObject.GetComponent<HandleableObj>();
+            dragObj.transform.SetParent(dragObjsTemporaryParent);
+            dragObj.GetComponent<Image>().raycastTarget = false;
         }
     }
 
@@ -55,13 +48,13 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
                 if (textArea.Answer == dragObj.codeText)
                 {
                     textArea.bCurAnswerisCurrect = true;
-                    Debug.Log("정답");
+                    // 정답을 맞춘거
                 }
                 else
                 {
                     Debug.Log("정답 : " + textArea.Answer);
                 }
-                GameManager.Instance.UsedBtnCountPlus();
+                GM.Instance.UsedBtnCountPlus();
                 dragObj = null;
                 return;
             }
