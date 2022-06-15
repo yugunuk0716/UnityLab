@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager2 : MonoBehaviour
+public class GameManager2 : GameManager
 {
     [SerializeField]
     private GameObject enemyCroissant;

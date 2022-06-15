@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerMove2 : MonoBehaviour
+public class PlayerMove3 : MonoBehaviour
 {
     [SerializeField]
     private float speed = 0.5f;
@@ -13,12 +13,16 @@ public class PlayerMove2 : MonoBehaviour
     private GameObject bulletPrfab;
 
     private GameManager4 gameManager;
+    private Collider2D col;
+    private SpriteRenderer spriteRenderer;
 
     Vector2 targetPosition = Vector2.zero;
 
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager4>();
+        col = GetComponent<Collider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(Fire());
     }
 
@@ -46,4 +50,36 @@ public class PlayerMove2 : MonoBehaviour
         }
     }
 
+    IEnumerator Revive()
+    {
+        col.enabled = false;
+        int count = 0;
+        while (count < 5)
+        {
+            spriteRenderer.enabled = false;
+            yield return new WaitForSeconds(0.25f);
+            spriteRenderer.enabled = true;
+            yield return new WaitForSeconds(0.25f);
+            count++;
+        }
+        col.enabled = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            if (gameManager.life > 0)
+            {
+                gameManager.life--;
+                gameManager.UpdateLife();
+                StartCoroutine(Revive());
+            }
+            else
+            {
+                //게임오버
+                SceneManager.LoadScene("GameOver");
+            }
+        }
+    }
 }

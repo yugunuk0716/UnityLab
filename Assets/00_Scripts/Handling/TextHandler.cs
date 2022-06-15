@@ -13,6 +13,8 @@ public class TextHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (eventData.selectedObject == null) return;
+
         if (eventData.selectedObject.CompareTag("Handleable"))
         {
             dragObj = eventData.selectedObject.GetComponent<HandleableObj>();

@@ -15,6 +15,7 @@ public class InGameOpen : MonoBehaviour
 	{
 		titleButton.onClick.AddListener(() => { SceneManager.LoadScene("Title"); });
 	}
+
 	public void Clear()
 	{
 		Instantiate(Resources.Load("Stage/Stage " + StageManager.instance.stageIdx), inGameObj.transform);

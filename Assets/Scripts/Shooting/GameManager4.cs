@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager4 : MonoBehaviour
+public class GameManager4 : GameManager
 {
     [SerializeField]
-    private GameObject enemyCroissant;
+    private GameObject enemy;
 
     [SerializeField]
     private Text lifeText;
@@ -37,7 +37,7 @@ public class GameManager4 : MonoBehaviour
             int count = 0;
             while (count < 5)
             {
-                Instantiate(enemyCroissant, new Vector2(randomX, 15f), Quaternion.identity);
+                Instantiate(enemy, new Vector2(randomX, 15f), Quaternion.identity);
                 yield return new WaitForSeconds(0.2f);
                 count++;
             }

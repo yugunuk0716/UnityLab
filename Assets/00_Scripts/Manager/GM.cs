@@ -46,7 +46,7 @@ public class GM : Singleton<GM>
                     return;
                 }
             }
-            UIManager.Instance.OpenPanel("clear");
+            //UIManager.Instance.OpenPanel("clear");
             ItemManager.Instance.coin += 10;
             if (Resources.Load("Stage/Stage " + StageManager.instance.stageIdx) == null)
             {

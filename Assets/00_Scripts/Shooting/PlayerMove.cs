@@ -8,13 +8,13 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private float speed = 0.5f;
 
-    private GameManager4 gameManager;
+    private GameManager1 gameManager;
 
     Vector2 targetPosition = Vector2.zero;
 
     private void Start()
     {
-        gameManager = FindObjectOfType< GameManager4 > ();
+        gameManager = FindObjectOfType<GameManager>() as GameManager1;
     }
 
     private void Update()

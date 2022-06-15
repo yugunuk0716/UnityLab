@@ -11,7 +11,7 @@ public class BulletMove : MonoBehaviour
 
     private void Start()
     {
-        gameManager = FindObjectOfType<GameManager4>();
+        gameManager = FindObjectOfType<GameManager>() as GameManager4;
     }
 
     private void Update()

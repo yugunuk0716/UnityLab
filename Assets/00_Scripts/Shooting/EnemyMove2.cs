@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyMove2 : MonoBehaviour
 {
@@ -15,12 +16,12 @@ public class EnemyMove2 : MonoBehaviour
     protected bool isDead = false;
 
     protected GameManager4 gameManager;
-    private SpriteRenderer spriteRenderer;
+    private Image image;
 
     protected virtual void Start()
     {
-        gameManager = FindObjectOfType<GameManager4>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        gameManager = FindObjectOfType<GameManager>() as GameManager4;
+        image = GetComponent<Image>();
     }
 
     protected virtual void Update()
@@ -58,8 +59,8 @@ public class EnemyMove2 : MonoBehaviour
 
     private IEnumerator DamageEffect()
     {
-        spriteRenderer.material.SetColor("_Color", new Color(1f, 1f, 1f, 0f));
+        image.color = new Color(1f, 1f, 1f, 0f);
         yield return new WaitForSeconds(0.1f);
-        spriteRenderer.material.SetColor("_Color", new Color(0f, 0f, 0f, 0f));
+        image.color = new Color(0f, 0f, 0f, 0f);
     }
 }

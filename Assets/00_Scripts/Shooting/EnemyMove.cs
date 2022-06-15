@@ -9,11 +9,11 @@ public class EnemyMove : MonoBehaviour
 
     protected bool isDead = false;
 
-    protected GameManager gameManager;
+    protected GameManager1 gameManager;
 
     protected virtual void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        gameManager = FindObjectOfType<GameManager>() as GameManager1;
     }
 
     protected virtual void Update()
