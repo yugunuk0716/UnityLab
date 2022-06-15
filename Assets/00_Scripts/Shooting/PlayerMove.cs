@@ -8,21 +8,12 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private float speed = 0.5f;
 
-    private GameManager1 gameManager;
-
     Vector2 targetPosition = Vector2.zero;
-
-    private void Start()
-    {
-        gameManager = FindObjectOfType<GameManager>() as GameManager1;
-    }
-
     private void Update()
     {
         if (Input.GetMouseButton(0))
         {
             targetPosition =Input.mousePosition;
-            Debug.Log(Input.mousePosition);
 
 			//targetPosition.x = Mathf.Clamp(targetPosition.x, gameManager.minPosition.x, gameManager.maxPosition.x);
 			targetPosition.y = Mathf.Clamp(targetPosition.y, 370f, 1540f);
