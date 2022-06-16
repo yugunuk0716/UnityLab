@@ -34,16 +34,18 @@ public class PopUp : MonoBehaviour
     public virtual void OnClickHomeBtn(string str) // 홈버튼 함수
     {
         Close();
+        ItemManager.Instance.canSeeHint = false;
+        print("홈");
         SceneManager.LoadScene(str);
         
     }
 
     public virtual void OnClickRetryBtn() // 다시시작 함수
     {
-        
         Close();
+        ItemManager.Instance.canSeeHint = false;
+        print("리트");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-     
     }
 
 

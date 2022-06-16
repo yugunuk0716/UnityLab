@@ -7,6 +7,7 @@ public class ItemManager : Singleton<ItemManager>
     public int coin = 0;
     public int hintItemCount = 0;
 
+    public bool canSeeHint = false;
 
     private void Awake()
     {

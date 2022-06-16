@@ -38,9 +38,14 @@ public class HintPopUp : PopUp
         {
             ItemManager.Instance.coin -= 10;
             //여기서 힌트 띄워주기
+            ItemManager.Instance.canSeeHint = true;
+            print("구매");
+            Close();
         }
         else
         {
+            if (ItemManager.Instance.canSeeHint)
+                return;
             exceptionPanel.SetActive(true);
         }
     }

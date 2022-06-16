@@ -24,6 +24,8 @@ public class HandleableObj : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (!ItemManager.Instance.canSeeHint)
+            return;
         UIManager.Instance.OpenPanel("tInfo");
         TextInfoPopUp tInfo = (TextInfoPopUp)UIManager.Instance.panelDic["tInfo"];
         tInfo.SetText(AnswerManager.Instance.textInfoDictionary[codeText]);
@@ -31,6 +33,8 @@ public class HandleableObj : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (!ItemManager.Instance.canSeeHint)
+            return;
         UIManager.Instance.ClosePanel();
     }
 }

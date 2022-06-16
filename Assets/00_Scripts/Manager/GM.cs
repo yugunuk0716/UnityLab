@@ -57,6 +57,7 @@ public class GM : Singleton<GM>
                 inGameOpen.Clear();
             }
             StageManager.instance.isClear = true;
+            ItemManager.Instance.canSeeHint = false;
             StageManager.instance.SaveData();
             Debug.Log("정답입니다");
         }
