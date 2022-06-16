@@ -33,7 +33,7 @@ public class GameManager4 : GameManager
     {
         while (true)
         {
-            float randomX = Random.Range(-6f, 6f);
+            float randomX = transform.position.x + Random.Range(-6f, 6f);
             int count = 0;
             while (count < 5)
             {

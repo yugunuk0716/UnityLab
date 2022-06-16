@@ -20,7 +20,7 @@ public class EnemyMove : MonoBehaviour
     {
         if (isDead) return;
 
-        transform.Translate(Vector2.down* speed);
+        transform.Translate(Vector2.down* speed*Time.deltaTime);
 
         if (transform.localPosition.y<gameManager.minPosition.y - 2f)
         {

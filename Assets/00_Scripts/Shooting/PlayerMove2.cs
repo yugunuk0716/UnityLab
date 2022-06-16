@@ -26,12 +26,12 @@ public class PlayerMove2 : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0,-1,0);
 
-            targetPosition.x = Mathf.Clamp(targetPosition.x, gameManager.minPosition.x, gameManager.maxPosition.x);
-            targetPosition.y = Mathf.Clamp(targetPosition.y, gameManager.minPosition.y, gameManager.maxPosition.y);
+            targetPosition.x = Mathf.Clamp(targetPosition.x, (-10) + gameManager.minPosition.x, (-10) + gameManager.maxPosition.x);
+            targetPosition.y = Mathf.Clamp(targetPosition.y, (-3)+gameManager.minPosition.y, (-3)+gameManager.maxPosition.y);
 
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPosition, Time.deltaTime * speed);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * speed);
         }
     }
 
