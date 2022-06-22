@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMove2 : MonoBehaviour
 {
-    [SerializeField]
-    private float speed = 0.5f;
+    private float speed = 2f;
     [SerializeField]
     private Transform firePosition;
     [SerializeField]

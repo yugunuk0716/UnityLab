@@ -22,7 +22,7 @@ public class EnemyMove : MonoBehaviour
 
         transform.Translate(Vector2.down* speed*Time.deltaTime);
 
-        if (transform.localPosition.y<gameManager.minPosition.y - 2f)
+        if (transform.localPosition.y < gameManager.minPosition.y -5f)
         {
             Destroy(gameObject);
         }

@@ -16,6 +16,25 @@ public class GM : Singleton<GM>
         StartCoroutine(CheckAndSetTextAreaCount());
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if (Resources.Load("Stage/Stage " + StageManager.instance.stageIdx) == null)
+            {
+                UIManager.Instance.OpenPanel("clear");
+            }
+            else
+            {
+                inGameOpen.Clear();
+            }
+            StageManager.instance.isClear = true;
+            ItemManager.Instance.canSeeHint = false;
+            StageManager.instance.SaveData();
+            Debug.Log("시뮬레이션 화면 플레이!");
+        }
+    }
+
     IEnumerator CheckAndSetTextAreaCount()
     {
         yield return new WaitForSeconds(0.3f);

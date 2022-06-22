@@ -1,15 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class GameManager2 : GameManager
+public class GameManager2 : GameManager1
 {
-    [SerializeField]
-    private GameObject enemyCroissant;
-
-    public Vector2 minPosition;
-    public Vector2 maxPosition;
+    public GameObject enemyCroissant;
 
     private void Start()
     {
@@ -20,12 +14,12 @@ public class GameManager2 : GameManager
     {
         while (true)
         {
-            float randomX = transform.position.x+Random.Range(-6f, 6f);
+            float randomX = transform.position.x + Random.Range(minPosition.x, maxPosition.x);
             int count = 0;
-            while (count < 5)
+            while (count < 3)
             {
-                Instantiate(enemyCroissant, new Vector2(randomX, 15f), Quaternion.identity);
-                yield return new WaitForSeconds(0.2f);
+                Instantiate(enemyCroissant, new Vector2(randomX, 3f), Quaternion.identity);
+                yield return new WaitForSeconds(0.3f);
                 count++;
             }
 

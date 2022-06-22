@@ -20,7 +20,7 @@ public class EnemyMove2 : MonoBehaviour
 
     protected virtual void Start()
     {
-        gameManager = FindObjectOfType<GameManager>() as GameManager4;
+        gameManager = FindObjectOfType<GameManager4>();
         image = GetComponent<Image>();
     }
 
@@ -28,13 +28,14 @@ public class EnemyMove2 : MonoBehaviour
     {
         if (isDead) return;
 
-        transform.Translate(Vector2.down * speed);
+        transform.Translate(Vector2.down * speed * Time.deltaTime);
 
-        if (transform.localPosition.y < gameManager.minPosition.y - 2f)
+        if (transform.localPosition.y < gameManager.minPosition.y - 5f)
         {
             Destroy(gameObject);
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Bullet"))

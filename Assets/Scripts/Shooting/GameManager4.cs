@@ -1,24 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager4 : GameManager
+public class GameManager4 : GameManager3
 {
-    [SerializeField]
-    private GameObject enemy;
+    public Text scoreText;
+    public Text highScoreText;
 
-    [SerializeField]
-    private Text lifeText;
-    [SerializeField]
-    private Text scoreText;
-    [SerializeField]
-    private Text highScoreText;
-
-    public Vector2 minPosition;
-    public Vector2 maxPosition;
-
-    public int life = 2;
     public int score = 0;
     private int highScore = 0;
 
@@ -27,29 +15,6 @@ public class GameManager4 : GameManager
         UpdateLife();
         UpdateHighScore();
         StartCoroutine(SpawnCroissant());
-    }
-
-    IEnumerator SpawnCroissant()
-    {
-        while (true)
-        {
-            float randomX = transform.position.x + Random.Range(-6f, 6f);
-            int count = 0;
-            while (count < 5)
-            {
-                Instantiate(enemy, new Vector2(randomX, 15f), Quaternion.identity);
-                yield return new WaitForSeconds(0.2f);
-                count++;
-            }
-
-            float delay = Random.Range(2f, 5f);
-            yield return new WaitForSeconds(delay);
-        }
-    }
-
-    public void UpdateLife()
-    {
-        lifeText.text = string.Format("x {0}", life);
     }
 
     public void UpdateScore()

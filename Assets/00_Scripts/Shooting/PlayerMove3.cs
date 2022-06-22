@@ -5,14 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMove3 : MonoBehaviour
 {
-    [SerializeField]
-    private float speed = 0.5f;
+    private float speed = 2f;
     [SerializeField]
     private Transform firePosition;
     [SerializeField]
     private GameObject bulletPrfab;
 
-    private GameManager4 gameManager;
+    private GameManager3 gameManager;
     private Collider2D col;
     private SpriteRenderer spriteRenderer;
 
@@ -20,7 +19,7 @@ public class PlayerMove3 : MonoBehaviour
 
     private void Start()
     {
-        gameManager = FindObjectOfType<GameManager4>();
+        gameManager = FindObjectOfType<GameManager3>();
         col = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(Fire());
@@ -30,12 +29,12 @@ public class PlayerMove3 : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, -1, 0);
 
-            targetPosition.x = Mathf.Clamp(targetPosition.x, gameManager.minPosition.x, gameManager.maxPosition.x);
-            targetPosition.y = Mathf.Clamp(targetPosition.y, gameManager.minPosition.y, gameManager.maxPosition.y);
+            targetPosition.x = Mathf.Clamp(targetPosition.x, (-10) + gameManager.minPosition.x, (-10) + gameManager.maxPosition.x);
+            targetPosition.y = Mathf.Clamp(targetPosition.y, (-3) + gameManager.minPosition.y, (-3) + gameManager.maxPosition.y);
 
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPosition, Time.deltaTime * speed);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * speed);
         }
     }
 
@@ -69,6 +68,7 @@ public class PlayerMove3 : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
+            Destroy(collision.gameObject);
             if (gameManager.life > 0)
             {
                 gameManager.life--;

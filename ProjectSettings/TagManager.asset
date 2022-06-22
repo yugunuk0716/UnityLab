@@ -8,6 +8,7 @@ TagManager:
   - DragableObj
   - AnswerArea
   - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - UI
   - AnswerAreaUI
   - InGame
-  - 
+  - Bullet
   - 
   - 
   - 

@@ -286,6 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coin: 0
   hintItemCount: 0
+  canSeeHint: 0
 --- !u!4 &163432562
 Transform:
   m_ObjectHideFlags: 0

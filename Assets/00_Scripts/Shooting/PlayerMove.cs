@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField]
-    private float speed = 0.5f;
+    private float speed = 2f;
 
     Vector2 targetPosition = Vector2.zero;
     private void Update()

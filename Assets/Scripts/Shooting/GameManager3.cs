@@ -1,18 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager3 : GameManager
+public class GameManager3 : GameManager2
 {
-    [SerializeField]
-    private GameObject enemyCroissant;
-
-    [SerializeField]
-    private Text lifeText;
-
-    public Vector2 minPosition;
-    public Vector2 maxPosition;
+    public Text lifeText;
 
     public int life = 2;
 
@@ -22,16 +14,16 @@ public class GameManager3 : GameManager
         StartCoroutine(SpawnCroissant());
     }
 
-    IEnumerator SpawnCroissant()
+    public IEnumerator SpawnCroissant()
     {
         while (true)
         {
-            float randomX = transform.position.x + Random.Range(-6f, 6f);
+            float randomX = transform.position.x + Random.Range(minPosition.x, maxPosition.x);
             int count = 0;
             while (count < 5)
             {
-                Instantiate(enemyCroissant, new Vector2(randomX, 15f), Quaternion.identity);
-                yield return new WaitForSeconds(0.2f);
+                Instantiate(enemyCroissant, new Vector2(randomX, 3f), Quaternion.identity);
+                yield return new WaitForSeconds(0.3f);
                 count++;
             }
 
