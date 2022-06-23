@@ -12,6 +12,9 @@ public class UIManager : Singleton<UIManager>
     public TextInfoPopUp tInfoPopUp;
 
 
+    public Button minMaxButton;
+
+
     public Button hintButton;
     public Button menuBtn;
     public Fade fade;

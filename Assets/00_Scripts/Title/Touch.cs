@@ -35,9 +35,9 @@ public class Touch : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        titleCanvasGroup.DOFade(0,1f).OnComplete(() =>
+        titleCanvasGroup.DOFade(0,0.7f).OnComplete(() =>
         {
-            change.startLifetime = 0.00001f;
+            change.startLifetime = 0.00000001f;
             normalParticle.gameObject.SetActive(false);
             titleCanvasGroup.gameObject.SetActive(false);
         });
