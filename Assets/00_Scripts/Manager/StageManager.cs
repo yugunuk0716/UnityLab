@@ -19,6 +19,9 @@ public class StageManager : MonoBehaviour
     public Transform btnParent; //버튼 부모
     public Button[] stageBtns { get; private set; } //인게임 이동 버튼
 
+
+    public Image currentBase;
+
     private StageLock stageLock;
 
 

@@ -72,6 +72,7 @@ public class CreateAnswer : MonoBehaviour
     {
         GameObject buttonObj = Instantiate(buttonPrefab, buttonParent.transform);
         GameObject baseObj = Instantiate(basePrefab, parent.transform);
+        StageManager.instance.currentBase = baseObj.GetComponent<Image>();
         GameObject baseParent = baseObj.transform.Find("Scroll View").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject;
             
         scriptsArray.Add(baseObj);
