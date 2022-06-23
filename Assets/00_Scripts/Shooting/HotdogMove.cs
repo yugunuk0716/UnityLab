@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class HotdogMove : EnemyMove
+public class HotdogMove : EnemyMove2
 {
     [SerializeField]
     private GameObject bulletMustard; 

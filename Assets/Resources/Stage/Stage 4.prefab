@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: 3009123107157746792}
   - component: {fileID: 3009123107157746794}
   - component: {fileID: 3009123107157746795}
+  - component: {fileID: 5718067846283667266}
+  - component: {fileID: 2012818878192375544}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -130,9 +132,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53c21d2ce9b1a145829bd64f324eed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
   firePosition: {fileID: 3009123107596625573}
   bulletPrfab: {fileID: 5914020786489812304, guid: bd0f11252508e7f438abd20b026bc226, type: 3}
+--- !u!50 &5718067846283667266
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3009123107157746793}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!70 &2012818878192375544
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3009123107157746793}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 3.3}
+  m_Direction: 0
 --- !u!1 &3009123107557143790
 GameObject:
   m_ObjectHideFlags: 0

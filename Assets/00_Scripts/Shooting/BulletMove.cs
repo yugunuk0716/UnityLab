@@ -16,10 +16,11 @@ public class BulletMove : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector2.up * speed);
+        transform.Translate(Vector2.up * speed * Time.deltaTime);
 
-        if (transform.position.y > gameManager.maxPosition.y + 2f)
+        if (transform.position.y > gameManager.maxPosition.y + 5f|| transform.position.y < gameManager.minPosition.y - 5f)
         {
+            Debug.Log(gameObject.name);
             Destroy(gameObject);
         }
     }

@@ -16,12 +16,12 @@ public class EnemyMove2 : MonoBehaviour
     protected bool isDead = false;
 
     protected GameManager4 gameManager;
-    private Image image;
+    private SpriteRenderer render;
 
     protected virtual void Start()
     {
         gameManager = FindObjectOfType<GameManager4>();
-        image = GetComponent<Image>();
+        render = GetComponent<SpriteRenderer>();
     }
 
     protected virtual void Update()
@@ -49,7 +49,7 @@ public class EnemyMove2 : MonoBehaviour
                 gameManager.score += rewardScore;
                 gameManager.UpdateScore();
 
-                Destroy(this.gameObject, 0.5f);
+                Destroy(this.gameObject);
             }
             else
             {
@@ -60,8 +60,8 @@ public class EnemyMove2 : MonoBehaviour
 
     private IEnumerator DamageEffect()
     {
-        image.color = new Color(1f, 1f, 1f, 0f);
+        render.color = Color.red;
         yield return new WaitForSeconds(0.1f);
-        image.color = new Color(0f, 0f, 0f, 0f);
+        render.color = Color.white;
     }
 }
